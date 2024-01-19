@@ -14,6 +14,7 @@ export class AlbumDetailsComponent {
   artist: Artist | undefined;
   albumId: string = '';
   duration: Duration = { minutes: 0, seconds: 0 };
+  isSearching: boolean = true;
 
   constructor(
     private artistsService: ArtistsService,
@@ -33,6 +34,7 @@ export class AlbumDetailsComponent {
         a.albums.some((album) => {
           if (album.id === this.albumId) {
             this.getDuration(album);
+            this.isSearching = false;
             return true;
           }
           return false;

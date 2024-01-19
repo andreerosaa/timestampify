@@ -1,25 +1,30 @@
-<div *ngIf="artist">
-  <h2>{{ artist.name }}</h2>
-  <div *ngFor="let album of artist.albums">
-    <div *ngIf="album.id === albumId">
-      <h3>{{ album.title }}</h3>
-      <!-- <img src="{{ album.coverArt }}" /> -->
-      <p>{{ album.description }}</p>
-      <app-favourite-icon
-        [isFavourite]="album"
-        [artist]="artist"
-      ></app-favourite-icon>
-      <ul>
-        <li *ngFor="let song of album.songs">
-          {{ song.title
-          }}<app-favourite-icon
-            [isFavourite]="song"
-            [artist]="artist"
-          ></app-favourite-icon>
-        </li>
-      </ul>
-      <p>{{ duration.minutes }} minutes and {{ duration.seconds }} seconds</p>
-      <p>{{ album.songs.length }} songs</p>
+<section *ngIf="!isSearching; else searchingTemplate">
+  <div *ngIf="artist">
+    <h2>{{ artist.name }}</h2>
+    <div *ngFor="let album of artist.albums">
+      <div *ngIf="album.id === albumId">
+        <h3>{{ album.title }}</h3>
+        <!-- <img src="{{ album.coverArt }}" /> -->
+        <p>{{ album.description }}</p>
+        <app-favourite-icon
+          [isFavourite]="album"
+          [artist]="artist"
+        ></app-favourite-icon>
+        <ul>
+          <li *ngFor="let song of album.songs">
+            {{ song.title
+            }}<app-favourite-icon
+              [isFavourite]="song"
+              [artist]="artist"
+            ></app-favourite-icon>
+          </li>
+        </ul>
+        <p>{{ duration.minutes }} minutes and {{ duration.seconds }} seconds</p>
+        <p>{{ album.songs.length }} songs</p>
+      </div>
     </div>
   </div>
-</div>
+</section>
+<ng-template #searchingTemplate>
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</ng-template>

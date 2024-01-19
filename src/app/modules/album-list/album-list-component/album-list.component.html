@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="!isSearching; else searchingTemplate">
   <ul>
     <li *ngFor="let artist of artists">
       {{ artist.name }}
@@ -10,3 +10,6 @@
     </li>
   </ul>
 </section>
+<ng-template #searchingTemplate>
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</ng-template>

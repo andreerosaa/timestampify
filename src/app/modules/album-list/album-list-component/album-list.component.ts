@@ -9,10 +9,11 @@ import { ArtistsService } from '../../../services/artists.service';
 })
 export class AlbumListComponent {
   artists: Array<Artist> = [];
-
+  isSearching: boolean = true;
   constructor(private artistsService: ArtistsService) {}
 
   ngOnInit(): void {
+    this.isSearching = true;
     this.fetchArtists();
   }
 
@@ -21,6 +22,7 @@ export class AlbumListComponent {
       (res: Array<Artist>) => {
         this.artists = res;
         console.log('Fetched artists:', this.artists);
+        this.isSearching = false;
       },
       (error: any) => {
         console.error('Error fetching artists:', error);
