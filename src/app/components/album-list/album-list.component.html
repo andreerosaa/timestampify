@@ -1,0 +1,12 @@
+<section>
+  <ul>
+    <li *ngFor="let artist of artists">
+      {{ artist.name }}
+      <ul>
+        <li *ngFor="let album of artist.albums">
+          <a [routerLink]="['/album', album.id]">{{ album.title }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>

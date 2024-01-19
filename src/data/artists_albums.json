@@ -1,0 +1,415 @@
+{
+  "artists": [
+    {
+      "id": "art01",
+      "name": "The Weeknd",
+      "albums": [
+        {
+          "id": "art01alb01",
+          "title": "Dawn FM",
+          "songs": [
+            {
+              "id": "art01alb01son01",
+              "title": "Dawn FM",
+              "length": "1:36",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son02",
+              "title": "Gasoline",
+              "length": "3:32",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son03",
+              "title": "How Do I Make You Love Me?",
+              "length": "3:34",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son04",
+              "title": "Take My Breath",
+              "length": "5:39",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son05",
+              "title": "Sacrifice",
+              "length": "3:08",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son06",
+              "title": "A Tale by Quincy",
+              "length": "1:36",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son07",
+              "title": "Out of Time",
+              "length": "3:34",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son08",
+              "title": "Here We Go... Again",
+              "length": "3:29",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son09",
+              "title": "Best Friends",
+              "length": "2:43",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son10",
+              "title": "Is There Someone Else?",
+              "length": "3:19",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son11",
+              "title": "Starry Eyes",
+              "length": "2:28",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son13",
+              "title": "Every Angel Is Terrifying",
+              "length": "2:47",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son14",
+              "title": "Don't Break My Heart",
+              "length": "3:25",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son15",
+              "title": "I Heard You're Married",
+              "length": "4:23",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son16",
+              "title": "Less than Zero",
+              "length": "3:31",
+              "favourite": false
+            },
+            {
+              "id": "art01alb01son17",
+              "title": "Phantom Regret by Jim",
+              "length": "2:59",
+              "favourite": false
+            }
+          ],
+          "description": "The Weeknd described the album's concept as a state of purgatory—a journey towards the light at the end of a tunnel, serving as a follow-up to his fourth studio album After Hours (2020).",
+          "coverArt": "https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "favourite": true
+        }
+      ]
+    },
+    {
+      "id": "art02",
+      "name": "Radiohead",
+      "albums": [
+        {
+          "id": "art02alb01",
+          "title": "The King of Limbs",
+          "songs": [
+            {
+              "id": "art02alb01son01",
+              "title": "Bloom",
+              "length": "5:15",
+              "favourite": false
+            },
+            {
+              "id": "art02alb01son02",
+              "title": "Morning Mr Magpie",
+              "length": "4:41",
+              "favourite": false
+            },
+            {
+              "id": "art02alb01son03",
+              "title": "Little by Little",
+              "length": "4:27",
+              "favourite": false
+            },
+            {
+              "id": "art02alb01son04",
+              "title": "Feral",
+              "length": "3:13",
+              "favourite": false
+            },
+            {
+              "id": "art02alb01son05",
+              "title": "Lotus Flower",
+              "length": "5:01",
+              "favourite": false
+            },
+            {
+              "id": "art02alb01son06",
+              "title": "Codex",
+              "length": "4:47",
+              "favourite": false
+            },
+            {
+              "id": "art02alb01son06",
+              "title": "Give Up the Ghost",
+              "length": "4:50",
+              "favourite": false
+            },
+            {
+              "id": "art02alb01son07",
+              "title": "Separator",
+              "length": "5:20",
+              "favourite": false
+            }
+          ],
+          "description": "The King of Limbs is the eighth studio album by English rock band Radiohead, produced by Nigel Godrich. It was self-released on 18 February 2011 as a download in MP3 and WAV formats, followed by physical CD and 12 vinyl releases on 28 March, a wider digital release via AWAL, and a special \"newspaper\" edition on 9 May 2011. The physical editions were released through the band's Ticker Tape imprint on XL in the United Kingdom, TBD in the United States, and Hostess Entertainment in Japan.",
+          "coverArt": "https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "favourite": false
+        },
+        {
+          "id": "art02alb02",
+          "title": "OK Computer",
+          "songs": [
+            {
+              "id": "art02alb02son01",
+              "title": "Airbag",
+              "length": "4:44",
+              "favourite": false
+            },
+            {
+              "id": "art02alb02son02",
+              "title": "Paranoid Android",
+              "length": "6:23",
+              "favourite": false
+            },
+            {
+              "id": "art02alb02son03",
+              "title": "Subterranean Homesick Alien",
+              "length": "4:27",
+              "favourite": false
+            },
+            {
+              "id": "art02alb02son04",
+              "title": "Exit Music (For a Film)",
+              "length": "4:24",
+              "favourite": false
+            },
+            {
+              "id": "art02alb02son05",
+              "title": "Let Down",
+              "length": "4:59",
+              "favourite": false
+            },
+            {
+              "id": "art02alb02son06",
+              "title": "Karma Police",
+              "length": "4:21",
+              "favourite": false
+            },
+            {
+              "id": "art02alb02son07",
+              "title": "Fitter Happier",
+              "length": "1:57",
+              "favourite": false
+            },
+            {
+              "id": "art02alb02son08",
+              "title": "Electioneering",
+              "length": "3:50",
+              "favourite": false
+            },
+            {
+              "id": "art02alb02son09",
+              "title": "Climbing Up the Walls",
+              "length": "4:45",
+              "favourite": false
+            },
+            {
+              "id": "art02alb02son10",
+              "title": "No Surprises",
+              "length": "3:48",
+              "favourite": false
+            },
+            {
+              "id": "art02alb02son11",
+              "title": "Lucky",
+              "length": "4:19",
+              "favourite": false
+            },
+            {
+              "id": "art02alb02son12",
+              "title": "The Tourist",
+              "length": "5:24",
+              "favourite": false
+            }
+          ],
+          "description": "OK Computer is the third studio album by the English alternative rock band Radiohead, released on 16 June 1997 on Parlophone in the United Kingdom and 1 July 1997 by Capitol Records in the United States. It marks a deliberate attempt by the band to move away from the introspective guitar-oriented sound of their previous album The Bends. Its layered sound and wide range of influences set it apart from many of the Britpop and alternative rock bands popular at the time and laid the groundwork for Radiohead's later, more experimental work.",
+          "coverArt": "https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "favourite": false
+        }
+      ]
+    },
+    {
+      "id": "art03",
+      "name": "Portishead",
+      "albums": [
+        {
+          "id": "art03alb01",
+          "title": "Dummy",
+          "songs": [
+            {
+              "id": "art03alb01son01",
+              "title": "Mysterons",
+              "length": "5:02",
+              "favourite": false
+            },
+            {
+              "id": "art03alb01son02",
+              "title": "Sour Times",
+              "length": "4:11",
+              "favourite": false
+            },
+            {
+              "id": "art03alb01son03",
+              "title": "Strangers",
+              "length": "3:55",
+              "favourite": false
+            },
+            {
+              "id": "art03alb01son04",
+              "title": "It Could Be Sweet",
+              "length": "4:16",
+              "favourite": false
+            },
+            {
+              "id": "art03alb01son05",
+              "title": "Wandering Star",
+              "length": "4:51",
+              "favourite": false
+            },
+            {
+              "id": "art03alb01son06",
+              "title": "It's a Fire",
+              "length": "3:49",
+              "favourite": false
+            },
+            {
+              "id": "art03alb01son07",
+              "title": "Numb",
+              "length": "3:54",
+              "favourite": false
+            },
+            {
+              "id": "art03alb01son08",
+              "title": "Roads",
+              "length": "5:02",
+              "favourite": false
+            },
+            {
+              "id": "art03alb01son09",
+              "title": "Pedestal",
+              "length": "3:39",
+              "favourite": false
+            },
+            {
+              "id": "art03alb01son10",
+              "title": "Biscuit",
+              "length": "5:01",
+              "favourite": false
+            },
+            {
+              "id": "art03alb01son11",
+              "title": "Glory Box",
+              "length": "5:06",
+              "favourite": false
+            }
+          ],
+          "description": "Dummy is the debut album of the Bristol-based group Portishead. Released in August 22, 1994 on Go! Discs, the album earned critical acclaim, winning the 1995 Mercury Music Prize. It is often credited with popularizing the trip-hop genre and is frequently cited in lists of the best albums of the 1990s. Although it achieved modest chart success overseas, it peaked at #2 on the UK Album Chart and saw two of its three singles reach #13. The album was certified gold in 1997 and has sold two million copies in Europe. As of September 2011, the album was certified double-platinum in the United Kingdom and has sold as of September 2011 825,000 copies.",
+          "coverArt": "https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "favourite": false
+        },
+        {
+          "id": "art03alb02",
+          "title": "Third",
+          "songs": [
+            {
+              "id": "art03alb02son01",
+              "title": "Silence",
+              "length": "4:58",
+              "favourite": false
+            },
+            {
+              "id": "art03alb02son02",
+              "title": "Hunter",
+              "length": "3:57",
+              "favourite": false
+            },
+            {
+              "id": "art03alb02son03",
+              "title": "Nylon Smile",
+              "length": "3:16",
+              "favourite": false
+            },
+            {
+              "id": "art03alb02son04",
+              "title": "The Rip",
+              "length": "4:29",
+              "favourite": false
+            },
+            {
+              "id": "art03alb02son05",
+              "title": "Plastic",
+              "length": "3:27",
+              "favourite": false
+            },
+            {
+              "id": "art03alb02son06",
+              "title": "We Carry On",
+              "length": "6:27",
+              "favourite": false
+            },
+            {
+              "id": "art03alb02son07",
+              "title": "Deep Water",
+              "length": "1:31",
+              "favourite": false
+            },
+            {
+              "id": "art03alb02son08",
+              "title": "Machine Gun",
+              "length": "4:43",
+              "favourite": false
+            },
+            {
+              "id": "art03alb02son09",
+              "title": "Small",
+              "length": "6:45",
+              "favourite": false
+            },
+            {
+              "id": "art03alb02son10",
+              "title": "Magic Doors",
+              "length": "3:32",
+              "favourite": false
+            },
+            {
+              "id": "art03alb02son11",
+              "title": "Threads",
+              "length": "5:45",
+              "favourite": false
+            }
+          ],
+          "description": "Third is the third studio album by English musical group Portishead, released on 27 April 2008, on Island Records in the United Kingdom, two days after on Mercury Records in the United States, and on 30 April 2008 on Universal Music Japan in Japan. It is their first release in 10 years, and their first studio album in eleven years. Third entered the UK Album Chart at #2, and became the band's first-ever American Top 10 album on the Billboard 200, reaching #7 in its entry week.",
+          "coverArt": "https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "favourite": false
+        }
+      ]
+    }
+  ]
+}
