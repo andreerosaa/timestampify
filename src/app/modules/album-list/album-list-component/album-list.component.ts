@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Artist } from '../../../models/artist';
-import { ArtistsService } from '../../services/artists.service';
+import { ArtistsService } from '../../../services/artists.service';
 
 @Component({
   selector: 'app-album-list',

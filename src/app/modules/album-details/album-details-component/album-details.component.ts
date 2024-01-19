@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ArtistsService } from '../../services/artists.service';
+import { ArtistsService } from '../../../services/artists.service';
 import { ActivatedRoute } from '@angular/router';
 import { Artist } from '../../../models/artist';
 import { Album } from '../../../models/album';

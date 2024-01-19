@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlbumListComponent } from './components/album-list/album-list.component';
-import { AlbumDetailsComponent } from './components/album-details/album-details.component';
+import { AlbumListComponent } from './modules/album-list/album-list-component/album-list.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'list' },
-  { path: 'list', component: AlbumListComponent },
-  { path: 'album/:albumId', component: AlbumDetailsComponent },
+  {
+    path: 'list',
+    component: AlbumListComponent,
+    loadChildren: () =>
+      import('./modules/album-list/album-list.module').then(
+        (m) => m.AlbumListModule
+      ),
+  },
 ];
 
 @NgModule({

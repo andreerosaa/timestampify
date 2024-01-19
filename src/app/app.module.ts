@@ -1,29 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AlbumListComponent } from './components/album-list/album-list.component';
-import { AlbumDetailsComponent } from './components/album-details/album-details.component';
 import { ArtistsService } from './services/artists.service';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
-import { FavouriteIconComponent } from './components/favourite-icon/favourite-icon.component';
+import { AlbumDetailsModule } from './modules/album-details/album-details.module';
+import { AlbumListModule } from './modules/album-list/album-list.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AlbumListComponent,
-    AlbumDetailsComponent,
-    FavouriteIconComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    MatIconModule,
+    AlbumDetailsModule,
+    AlbumListModule,
   ],
   providers: [ArtistsService],
   bootstrap: [AppComponent],
