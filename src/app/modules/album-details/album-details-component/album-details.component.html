@@ -1,6 +1,8 @@
 <section *ngIf="!isSearching; else searchingTemplate">
   <div *ngIf="artist">
-    <h2>{{ artist.name }}</h2>
+    <h2>
+      {{ artist.name }}
+    </h2>
     <div *ngFor="let album of artist.albums">
       <div *ngIf="album.id === albumId">
         <h3>{{ album.title }}</h3>
@@ -23,6 +25,9 @@
         <p>{{ album.songs.length }} songs</p>
       </div>
     </div>
+    <a [routerLink]="['/list']"
+      ><mat-icon>subdirectory_arrow_left</mat-icon>Go Back</a
+    >
   </div>
 </section>
 <ng-template #searchingTemplate>
