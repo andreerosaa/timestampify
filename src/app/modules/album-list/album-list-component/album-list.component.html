@@ -1,12 +1,10 @@
-<app-header></app-header>
 <section *ngIf="!isSearching; else searchingTemplate">
+  <app-header></app-header>
   <ul>
     <li *ngFor="let artist of artists">
       <ul>
         <li *ngFor="let album of artist.albums">
-          <a [routerLink]="['/album', album.id]">
-            <app-album-card [album]="album" [artist]="artist"></app-album-card>
-          </a>
+          <app-album-card [album]="album" [artist]="artist"></app-album-card>
         </li>
       </ul>
     </li>

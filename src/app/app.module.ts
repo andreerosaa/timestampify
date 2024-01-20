@@ -6,6 +6,7 @@ import { ArtistsService } from './services/artists.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AlbumDetailsModule } from './modules/album-details/album-details.module';
 import { AlbumListModule } from './modules/album-list/album-list.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { AlbumListModule } from './modules/album-list/album-list.module';
     HttpClientModule,
     AlbumDetailsModule,
     AlbumListModule,
+    BrowserAnimationsModule,
   ],
   providers: [ArtistsService],
   bootstrap: [AppComponent],
