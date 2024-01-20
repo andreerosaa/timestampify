@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { Artist } from '../../../models/artist';
 import { FormControl } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
@@ -10,15 +10,18 @@ import { Observable, map, startWith } from 'rxjs';
 })
 export class HeaderComponent {
   @Input() artists: Array<Artist> | undefined;
+  @Output() filteredArtists: Observable<string[]> | undefined;
 
   control = new FormControl('');
-  filteredArtists: Observable<string[]> | undefined;
 
   ngOnInit() {
     this.filteredArtists = this.control.valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value || ''))
     );
+    console.log('test');
+    console.log(this.filteredArtists);
+    console.log(this.artists);
   }
 
   private _filter(value: string): string[] {

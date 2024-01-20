@@ -6,7 +6,11 @@ body {
 }
 body {
   background-color: #f9efdb;
-  color: #638889;
+  background-image: url("./assets/background-stripes.svg");
+  background-size: 110%;
+  background-position: center;
+  background-attachment: fixed;
+  color: #345859;
   //   color: #EBD9B4;
   //   color: #9DBC98;
   margin: 0;
@@ -16,6 +20,7 @@ body {
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  overflow-y: scroll;
 }
 
 a,

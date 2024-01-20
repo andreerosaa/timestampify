@@ -5,6 +5,7 @@ import { AlbumDetailsComponent } from './album-details-component/album-details.c
 import { FavouriteIconComponent } from './favourite-icon-component/favourite-icon.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AlbumDetailsRoutingModule } from './album-details-routing.module';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [AlbumDetailsComponent, FavouriteIconComponent],
@@ -13,6 +14,7 @@ import { AlbumDetailsRoutingModule } from './album-details-routing.module';
     AlbumDetailsRoutingModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatCardModule,
   ],
 })
 export class AlbumDetailsModule {}

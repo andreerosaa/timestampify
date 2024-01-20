@@ -1,5 +1,5 @@
 <section *ngIf="!isSearching; else searchingTemplate">
-  <div *ngIf="artist">
+  <mat-card *ngIf="artist">
     <a [routerLink]="['/list']">
       <mat-icon>arrow_back_ios</mat-icon>
     </a>
@@ -31,7 +31,7 @@
     <a [routerLink]="['/list']"
       ><mat-icon>subdirectory_arrow_left</mat-icon>Go Back</a
     >
-  </div>
+  </mat-card>
 </section>
 <ng-template #searchingTemplate>
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
