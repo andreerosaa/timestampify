@@ -1,0 +1,22 @@
+<mat-card *ngIf="album && artist">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>{{ album.title }}</mat-card-title>
+      <mat-card-subtitle>{{ artist.name }}</mat-card-subtitle>
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <img mat-card-md-image src="{{ album.coverArt }}" alt="Album Cover Art" />
+    <p>{{ album.description.slice(0, 100) }}...</p>
+
+    <!-- <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-description>
+            {{ album.description.slice(0, 25) }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>{{ album.description }}</p>
+      </mat-expansion-panel> -->
+  </mat-card-content>
+</mat-card>

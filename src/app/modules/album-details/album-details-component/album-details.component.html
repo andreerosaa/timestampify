@@ -1,5 +1,8 @@
 <section *ngIf="!isSearching; else searchingTemplate">
   <div *ngIf="artist">
+    <a [routerLink]="['/list']">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </a>
     <h2>
       {{ artist.name }}
     </h2>
