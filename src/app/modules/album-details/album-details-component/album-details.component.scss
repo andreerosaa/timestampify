@@ -1,5 +1,96 @@
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-card {
+  margin: 3rem;
+  width: 45%;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.8px);
+  -webkit-backdrop-filter: blur(5.8px);
+}
+
+@media (max-width: 859px) {
+  mat-card {
+    margin: 1rem;
+    width: 80%;
+    padding: 0.5rem;
+  }
+
+  mat-card-title-group {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+mat-card-title-group {
+  flex-wrap: wrap;
+}
+
 mat-progress-spinner {
   position: fixed;
   top: 50%;
   left: 50%;
+}
+
+img {
+  border-radius: 0.5rem;
+}
+
+.song-li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+mat-list {
+  margin-top: 2rem;
+}
+
+.add-fav {
+  display: flex;
+  align-items: center;
+}
+
+app-favourite-icon {
+  margin-right: 0.5rem;
+}
+
+.back-icon {
+  transform: scale(0.8);
+}
+
+.go-back {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.go-back-wrapper {
+  display: flex;
+  justify-content: start;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+app-favourite-icon:hover {
+  cursor: pointer;
+}
+
+.duration {
+  text-align: end;
+}
+
+.description {
+  text-align: justify;
 }

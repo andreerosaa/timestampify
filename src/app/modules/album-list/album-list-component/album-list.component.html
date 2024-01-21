@@ -1,14 +1,10 @@
 <section *ngIf="!isSearching; else searchingTemplate">
   <app-header></app-header>
-  <ul>
-    <li *ngFor="let artist of artists">
-      <ul>
-        <li *ngFor="let album of artist.albums">
-          <app-album-card [album]="album" [artist]="artist"></app-album-card>
-        </li>
-      </ul>
-    </li>
-  </ul>
+  <div class="album-list" *ngFor="let artist of artists">
+    <div *ngFor="let album of artist.albums">
+      <app-album-card [album]="album" [artist]="artist"></app-album-card>
+    </div>
+  </div>
 </section>
 <ng-template #searchingTemplate>
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>

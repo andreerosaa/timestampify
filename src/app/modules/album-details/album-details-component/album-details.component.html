@@ -1,36 +1,55 @@
 <section *ngIf="!isSearching; else searchingTemplate">
-  <mat-card *ngIf="artist">
-    <a [routerLink]="['/list']">
-      <mat-icon>arrow_back_ios</mat-icon>
-    </a>
-    <h2>
-      {{ artist.name }}
-    </h2>
-    <div *ngFor="let album of artist.albums">
-      <div *ngIf="album.id === albumId">
-        <h3>{{ album.title }}</h3>
-        <!-- <img src="{{ album.coverArt }}" /> -->
-        <p>{{ album.description }}</p>
-        <app-favourite-icon
-          [isFavourite]="album"
-          [artist]="artist"
-        ></app-favourite-icon>
-        <ul>
-          <li *ngFor="let song of album.songs">
-            {{ song.title
-            }}<app-favourite-icon
-              [isFavourite]="song"
-              [artist]="artist"
-            ></app-favourite-icon>
-          </li>
-        </ul>
-        <p>{{ duration.minutes }} minutes and {{ duration.seconds }} seconds</p>
-        <p>{{ album.songs.length }} songs</p>
+  <mat-card *ngIf="artist && album">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{ album.title }}</mat-card-title>
+        <mat-card-subtitle>{{ artist.name }}</mat-card-subtitle>
+        <mat-card-subtitle class="go-back-wrapper"
+          ><a class="go-back" [routerLink]="['/list']"
+            ><mat-icon class="back-icon">arrow_back_ios</mat-icon>
+            <p>Go Back</p></a
+          ></mat-card-subtitle
+        >
+        <img
+          mat-card-xl-image
+          src="{{ album.coverArt }}"
+          alt="Album Cover Art"
+        />
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="description">{{ album.description }}</p>
+
+      <div class="details">
+        <div class="add-fav">
+          <app-favourite-icon
+            [isFavourite]="album"
+            [artist]="artist"
+          ></app-favourite-icon
+          >Add to Favourites
+        </div>
+        <div class="duration">
+          <span>
+            {{ duration.minutes }} minutes and {{ duration.seconds }} seconds
+          </span>
+          <span>| {{ album.songs.length }} songs</span>
+        </div>
       </div>
-    </div>
-    <a [routerLink]="['/list']"
-      ><mat-icon>subdirectory_arrow_left</mat-icon>Go Back</a
-    >
+      <mat-list *ngFor="let song of album.songs">
+        <div class="song-li">
+          <div matListItemTitle>{{ song.title }}</div>
+          <app-favourite-icon
+            [isFavourite]="song"
+            [artist]="artist"
+          ></app-favourite-icon>
+        </div>
+        <mat-divider></mat-divider>
+      </mat-list>
+      <a class="go-back" [routerLink]="['/list']"
+        ><mat-icon class="back-icon">arrow_back_ios</mat-icon>
+        <p>Go Back</p></a
+      >
+    </mat-card-content>
   </mat-card>
 </section>
 <ng-template #searchingTemplate>

@@ -13,6 +13,7 @@ import { Duration } from '../../../models/duration';
 export class AlbumDetailsComponent {
   artist: Artist | undefined;
   albumId: string = '';
+  album: Album | undefined;
   duration: Duration = { minutes: 0, seconds: 0 };
   isSearching: boolean = true;
 
@@ -34,6 +35,7 @@ export class AlbumDetailsComponent {
         a.albums.some((album) => {
           if (album.id === this.albumId) {
             this.getDuration(album);
+            this.album = album;
             this.isSearching = false;
             return true;
           }

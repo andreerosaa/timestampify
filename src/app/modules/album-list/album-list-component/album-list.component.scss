@@ -1,3 +1,15 @@
+section {
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+@media (max-width: 859px) {
+  section {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+}
+
 mat-progress-spinner {
   position: fixed;
   top: 50%;

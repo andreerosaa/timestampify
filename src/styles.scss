@@ -1,15 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
-html,
-body {
-  height: 100%;
-}
-body {
+html {
   background-color: #f9efdb;
   background-image: url("./assets/background-stripes.svg");
-  background-size: 110%;
+  background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  background-repeat: no-repeat;
   color: #345859;
   //   color: #EBD9B4;
   //   color: #9DBC98;
