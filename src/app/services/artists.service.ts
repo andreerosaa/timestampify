@@ -10,6 +10,7 @@ import { Favouritable } from '../models/favouritable';
 })
 export class ArtistsService {
   private apiUrl = environment.apiUrl || 'http://localhost:3000/artists';
+  private jsonPath = environment.jsonPath || '../data/artists_albums';
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +18,7 @@ export class ArtistsService {
     return this.http.get<Array<Artist>>(this.apiUrl).pipe(
       catchError((error) => {
         console.error('Error fetching artists:', error);
-        return of([]);
+        return this.fetchFromLocalJson();
       })
     );
   }
@@ -32,6 +33,19 @@ export class ArtistsService {
       catchError((error) => {
         console.error('Error adding to favourites:', error);
         return of(error);
+      })
+    );
+  }
+
+  private fetchFromLocalJson(): Observable<Array<Artist>> {
+    return this.http.get<Array<Artist>>(this.jsonPath).pipe(
+      catchError((jsonPathError) => {
+        console.error(
+          'Error fetching artists from local JSON file:',
+          jsonPathError
+        );
+        console.log('Returning an empty array.');
+        return of([]);
       })
     );
   }
