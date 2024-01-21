@@ -6,7 +6,7 @@ section {
 
 mat-card {
   margin: 3rem;
-  width: 45%;
+  width: 48%;
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
@@ -24,7 +24,7 @@ mat-card {
 
   mat-card-title-group {
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
   }
 }
 

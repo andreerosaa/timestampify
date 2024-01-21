@@ -9,7 +9,7 @@ import { ArtistsService } from '../../../services/artists.service';
   styleUrl: './favourite-icon.component.scss',
 })
 export class FavouriteIconComponent {
-  @Input() isFavourite: Favouritable = { favourite: false };
+  @Input() isFavourite: Favouritable = { favourite: false, id: '' };
   @Input() artist: Artist | undefined;
 
   constructor(private artistsService: ArtistsService) {}

@@ -22,11 +22,12 @@ export class ArtistsService {
     );
   }
 
-  toggleAddToFavourites<T extends Favouritable>(
-    objectToFav: T
-  ): Observable<Favouritable> {
-    const url = this.apiUrl;
-    const body = {};
+  toggleAddToFavourites(objectToFav: Favouritable): Observable<Favouritable> {
+    const url = `${this.apiUrl}/${objectToFav.id}`;
+    const body = {
+      id: objectToFav.id,
+      favourite: objectToFav.favourite,
+    };
     return this.http.put<Favouritable>(url, body).pipe(
       catchError((error) => {
         console.error('Error adding to favourites:', error);

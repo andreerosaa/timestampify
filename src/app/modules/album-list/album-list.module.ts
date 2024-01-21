@@ -6,10 +6,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HeaderComponent } from './header-component/header.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { AlbumCardComponent } from './album-card/album-card.component';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AlbumListComponent, HeaderComponent, AlbumCardComponent],
@@ -19,11 +16,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatProgressSpinnerModule,
     MatCardModule,
     MatIconModule,
-    MatExpansionModule,
-    MatAutocompleteModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AsyncPipe,
   ],
 })
 export class AlbumListModule {}
