@@ -1,16 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { Artist } from '../models/artist';
 import { environment } from '../../environments/environment.development';
 import { Favouritable } from '../models/favouritable';
+import artistsFromJson from '../data/artists_albums.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArtistsService {
   private apiUrl = environment.apiUrl || 'http://localhost:3000/artists';
-  private jsonPath = environment.jsonPath || '../data/artists_albums';
+  private jsonArtists: Array<Artist> = artistsFromJson.artists;
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +19,7 @@ export class ArtistsService {
     return this.http.get<Array<Artist>>(this.apiUrl).pipe(
       catchError((error) => {
         console.error('Error fetching artists:', error);
-        return this.fetchFromLocalJson();
+        return of(this.fetchFromLocalJson());
       })
     );
   }
@@ -37,16 +38,7 @@ export class ArtistsService {
     );
   }
 
-  private fetchFromLocalJson(): Observable<Array<Artist>> {
-    return this.http.get<Array<Artist>>(this.jsonPath).pipe(
-      catchError((jsonPathError) => {
-        console.error(
-          'Error fetching artists from local JSON file:',
-          jsonPathError
-        );
-        console.log('Returning an empty array.');
-        return of([]);
-      })
-    );
+  private fetchFromLocalJson(): Array<Artist> {
+    return this.jsonArtists;
   }
 }
