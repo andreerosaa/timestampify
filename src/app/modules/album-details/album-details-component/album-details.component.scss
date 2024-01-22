@@ -85,6 +85,7 @@ app-favourite-icon {
 
 .go-back-wrapper {
   display: flex;
+  width: 100%;
   justify-content: start;
 }
 
@@ -96,6 +97,15 @@ app-favourite-icon {
 
 .duration {
   text-align: end;
+}
+
+.length {
+  background-color: #345859;
+  color: #f9efdb;
+  white-space: nowrap;
+  border-radius: 0.3rem;
+  padding: 0.3rem;
+  margin-right: 0.3rem;
 }
 
 .description {

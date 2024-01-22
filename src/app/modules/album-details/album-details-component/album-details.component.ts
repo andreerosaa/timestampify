@@ -58,6 +58,7 @@ export class AlbumDetailsComponent {
     localStorage.setItem('artist', JSON.stringify(this.artist));
   }
 
+  // On refresh trigger ngOnDestroy
   @HostListener('window:beforeunload', ['$event'])
   unloadHandler(event: Event) {
     this.ngOnDestroy();
