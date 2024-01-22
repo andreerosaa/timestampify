@@ -25,8 +25,8 @@
           <app-favourite-icon
             [isFavourite]="album"
             [artist]="artist"
-          ></app-favourite-icon
-          >Add to Favourites
+          ></app-favourite-icon>
+          <p class="favourites-p">Add to Favourites</p>
         </div>
         <div class="duration">
           <span>
@@ -36,13 +36,10 @@
         </div>
       </div>
       <mat-list *ngFor="let song of album.songs">
-        <div class="song-li">
-          <div matListItemTitle>{{ song.title }}</div>
-          <app-favourite-icon
-            [isFavourite]="song"
-            [artist]="artist"
-          ></app-favourite-icon>
-        </div>
+        <app-song-list-item
+          [artist]="artist"
+          [song]="song"
+        ></app-song-list-item>
         <mat-divider></mat-divider>
       </mat-list>
       <a class="go-back" [routerLink]="['/list']"

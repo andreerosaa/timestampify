@@ -10,20 +10,34 @@ import artistsFromJson from '../data/artists_albums.json';
   providedIn: 'root',
 })
 export class ArtistsService {
-  private apiUrl = environment.apiUrl || 'http://localhost:3000/artists';
-  private jsonArtists: Array<Artist> = artistsFromJson.artists;
+  /** Private Properties */
 
+  // JSON Server API url from the environment variable
+  private readonly apiUrl =
+    environment.apiUrl || 'http://localhost:3000/artists';
+
+  // Backup artists array fetched directly from JSON file
+  private readonly jsonArtists: Array<Artist> = artistsFromJson.artists;
+
+  /** constructor */
   constructor(private http: HttpClient) {}
 
+  /** Public Methods */
+
+  // to get artists from JSON Server, in case of error, use backup directly retrieved from file (needed for Vercel deployment)
   getArtists(): Observable<Array<Artist>> {
     return this.http.get<Array<Artist>>(this.apiUrl).pipe(
       catchError((error) => {
-        console.error('Error fetching artists:', error);
-        return of(this.fetchFromLocalJson());
+        console.log(
+          'Error fetching artists, fetching directly from JSON file:',
+          error
+        );
+        return of(this.jsonArtists);
       })
     );
   }
 
+  // mock endpoint to update song/album as favourite
   toggleAddToFavourites(objectToFav: Favouritable): Observable<Favouritable> {
     const url = `${this.apiUrl}/${objectToFav.id}`;
     const body = {
@@ -32,13 +46,9 @@ export class ArtistsService {
     };
     return this.http.put<Favouritable>(url, body).pipe(
       catchError((error) => {
-        console.error('Error adding to favourites:', error);
+        console.log('Error adding to favourites:', error);
         return of(error);
       })
     );
-  }
-
-  private fetchFromLocalJson(): Array<Artist> {
-    return this.jsonArtists;
   }
 }

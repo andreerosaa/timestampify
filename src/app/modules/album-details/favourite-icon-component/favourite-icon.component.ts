@@ -14,14 +14,16 @@ export class FavouriteIconComponent {
 
   constructor(private artistsService: ArtistsService) {}
 
+  //Logic to change icon on click and send request to service to update item as favourite
   addOrRemoveFromFavourites() {
+    this.isFavourite.favourite = !this.isFavourite.favourite;
     this.artistsService.toggleAddToFavourites(this.isFavourite).subscribe(
       (res: Favouritable) => {
         console.log('Added to favourites:', res);
-        this.isFavourite.favourite = !this.isFavourite.favourite;
       },
       (error: any) => {
-        console.error('Error adding to favourites:', error);
+        this.isFavourite.favourite = !this.isFavourite.favourite;
+        console.log('Error adding to favourites:', error);
       }
     );
   }

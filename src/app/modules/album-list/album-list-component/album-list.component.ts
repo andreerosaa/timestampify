@@ -10,6 +10,7 @@ import { ArtistsService } from '../../../services/artists.service';
 export class AlbumListComponent {
   artists: Array<Artist> = [];
   isSearching: boolean = true;
+
   constructor(private artistsService: ArtistsService) {}
 
   ngOnInit(): void {
@@ -17,6 +18,7 @@ export class AlbumListComponent {
     this.fetchArtists();
   }
 
+  // Call artists service on component init to get all artists from json
   fetchArtists(): void {
     this.artistsService.getArtists().subscribe(
       (res: Array<Artist>) => {
@@ -25,7 +27,7 @@ export class AlbumListComponent {
         this.isSearching = false;
       },
       (error: any) => {
-        console.error('Error fetching artists:', error);
+        console.log('Error fetching artists:', error);
       }
     );
   }

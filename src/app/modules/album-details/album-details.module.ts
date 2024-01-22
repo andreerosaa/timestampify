@@ -8,9 +8,14 @@ import { AlbumDetailsRoutingModule } from './album-details-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { SongListItemComponent } from './song-list-item-component/song-list-item.component';
 
 @NgModule({
-  declarations: [AlbumDetailsComponent, FavouriteIconComponent],
+  declarations: [
+    AlbumDetailsComponent,
+    FavouriteIconComponent,
+    SongListItemComponent,
+  ],
   imports: [
     CommonModule,
     AlbumDetailsRoutingModule,

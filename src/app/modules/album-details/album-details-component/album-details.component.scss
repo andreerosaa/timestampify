@@ -28,14 +28,25 @@ mat-card {
   }
 }
 
+// Hide "Add to Favourites" in smaller devices
+@media (max-width: 500px) {
+  .details {
+    font-size: 0.7rem;
+  }
+
+  .favourites-p {
+    display: none;
+  }
+}
+
 mat-card-title-group {
   flex-wrap: wrap;
 }
 
 mat-progress-spinner {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
 }
 
 img {
@@ -49,7 +60,7 @@ img {
 }
 
 mat-list {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .add-fav {

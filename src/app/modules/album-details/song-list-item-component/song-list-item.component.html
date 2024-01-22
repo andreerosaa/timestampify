@@ -1,0 +1,8 @@
+<div class="song-li" *ngIf="song && artist">
+  <div matListItemTitle>{{ song.title }}</div>
+  <app-favourite-icon
+    [isFavourite]="song"
+    [artist]="artist"
+  ></app-favourite-icon>
+</div>
+<mat-divider></mat-divider>
