@@ -18,30 +18,30 @@ export class AlbumDetailsComponent {
   isSearching: boolean = true;
 
   constructor(
-    private artistsService: ArtistsService,
-    private route: ActivatedRoute
+    private _artistsService: ArtistsService,
+    private _route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     // Get the albumId from the route parameters
-    this.route.paramMap.subscribe((params) => {
+    this._route.paramMap.subscribe((params) => {
       this.albumId = params.get('albumId') || '';
     });
 
     // Fetch the artist data
-    this.artistsService.getArtists().subscribe((artists) => {
+    this._artistsService.selectedArtist.subscribe((selectedArtistInput) => {
       // Find the artist that contains the requested album
-      this.artist = artists.find((a) =>
-        a.albums.some((album) => {
-          if (album.id === this.albumId) {
-            this.getDuration(album);
-            this.album = album;
-            this.isSearching = false;
-            return true;
-          }
-          return false;
-        })
-      );
+      this.artist = selectedArtistInput;
+
+      this.artist?.albums.forEach((album) => {
+        if (album.id === this.albumId) {
+          this.getDuration(album);
+          this.album = album;
+          this.isSearching = false;
+          return true;
+        }
+        return false;
+      });
     });
   }
 

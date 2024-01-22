@@ -1,5 +1,5 @@
 <mat-card *ngIf="album && artist">
-  <a [routerLink]="['/album', album.id]">
+  <a [routerLink]="['/album', album.id]" (click)="selectArtistData(artist)">
     <mat-card-header>
       <img mat-card-md-image src="{{ album.coverArt }}" alt="Album Cover Art" />
       <div class="card-title-group-container">

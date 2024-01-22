@@ -11,7 +11,7 @@ export class AlbumListComponent {
   artists: Array<Artist> = [];
   isSearching: boolean = true;
 
-  constructor(private artistsService: ArtistsService) {}
+  constructor(private _artistsService: ArtistsService) {}
 
   ngOnInit(): void {
     this.isSearching = true;
@@ -19,8 +19,8 @@ export class AlbumListComponent {
   }
 
   // Call artists service on component init to get all artists from json
-  fetchArtists(): void {
-    this.artistsService.getArtists().subscribe(
+  private fetchArtists(): void {
+    this._artistsService.getArtists().subscribe(
       (res: Array<Artist>) => {
         this.artists = res;
         console.log('Fetched artists:', this.artists);

@@ -12,12 +12,12 @@ export class FavouriteIconComponent {
   @Input() isFavourite: Favouritable = { favourite: false, id: '' };
   @Input() artist: Artist | undefined;
 
-  constructor(private artistsService: ArtistsService) {}
+  constructor(private _artistsService: ArtistsService) {}
 
   //Logic to change icon on click and send request to service to update item as favourite
   addOrRemoveFromFavourites() {
     this.isFavourite.favourite = !this.isFavourite.favourite;
-    this.artistsService.toggleAddToFavourites(this.isFavourite).subscribe(
+    this._artistsService.toggleAddToFavourites(this.isFavourite).subscribe(
       (res: Favouritable) => {
         console.log('Added to favourites:', res);
       },
