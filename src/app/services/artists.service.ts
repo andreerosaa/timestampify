@@ -19,6 +19,7 @@ export class ArtistsService {
   // Backup artists array fetched directly from JSON file
   private readonly _jsonArtists: Array<Artist> = artistsFromJson.artists;
 
+  // variables to hold the selected artist data
   private _selectedArtistSource = new BehaviorSubject<any>(null);
   selectedArtist = this._selectedArtistSource.asObservable();
 
@@ -55,6 +56,7 @@ export class ArtistsService {
     );
   }
 
+  // set the data of the clicked card to the currently selected artist
   setSelectedArtistData(artist: Artist) {
     this._selectedArtistSource.next(artist);
   }

@@ -14,6 +14,7 @@ export class AlbumCardComponent {
 
   constructor(private _artistsService: ArtistsService) {}
 
+  // on click send the artist data to the service to set the selected artist
   selectArtistData(artist: any) {
     this._artistsService.setSelectedArtistData(artist);
   }

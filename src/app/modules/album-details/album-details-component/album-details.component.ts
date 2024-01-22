@@ -28,7 +28,7 @@ export class AlbumDetailsComponent {
       this.albumId = params.get('albumId') || '';
     });
 
-    // Fetch the artist data
+    // Fetch the artist data from the selected on click
     this._artistsService.selectedArtist.subscribe((selectedArtistInput) => {
       // Find the artist that contains the requested album
       this.artist = selectedArtistInput;
