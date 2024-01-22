@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ArtistsService } from '../../../services/artists.service';
 import { ActivatedRoute } from '@angular/router';
 import { Artist } from '../../../models/artist';
@@ -33,6 +33,14 @@ export class AlbumDetailsComponent {
       // Find the artist that contains the requested album
       this.artist = selectedArtistInput;
 
+      // In case the artist data is not found, fetch from local storage
+      if (!this.artist) {
+        let localStorageArtist = localStorage.getItem('artist');
+        if (localStorageArtist) {
+          this.artist = JSON.parse(localStorageArtist);
+        }
+      }
+
       this.artist?.albums.forEach((album) => {
         if (album.id === this.albumId) {
           this.getDuration(album);
@@ -43,6 +51,16 @@ export class AlbumDetailsComponent {
         return false;
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    // Store artist data on local storage
+    localStorage.setItem('artist', JSON.stringify(this.artist));
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadHandler(event: Event) {
+    this.ngOnDestroy();
   }
 
   getDuration(album: Album): Duration {
