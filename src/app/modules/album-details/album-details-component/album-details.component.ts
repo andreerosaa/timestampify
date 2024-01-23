@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { ArtistsService } from '../../../services/artists.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Artist } from '../../../models/artist';
 import { Album } from '../../../models/album';
 import { Duration } from '../../../models/duration';
@@ -17,11 +17,15 @@ export class AlbumDetailsComponent {
   duration: Duration = { minutes: 0, seconds: 0 };
   isSearching: boolean = true;
 
-  constructor(private _artistsService: ArtistsService, private _route: ActivatedRoute) {}
+  constructor(
+    private _artistsService: ArtistsService,
+    private _route: ActivatedRoute,
+    private _router: Router
+  ) {}
 
   ngOnInit() {
     // Get the albumId from the route parameters
-    this._route.paramMap.subscribe((params) => {
+    this._route.paramMap.subscribe((params: ParamMap) => {
       this.albumId = params.get('albumId') || '';
     });
 
@@ -44,9 +48,15 @@ export class AlbumDetailsComponent {
           this.album = album;
           this.isSearching = false;
           return true;
+        } else {
+          this.isSearching = false;
+          return;
         }
-        return false;
       });
+
+      if (!this.album) {
+        this._router.navigate(['not-found']);
+      }
     });
   }
 

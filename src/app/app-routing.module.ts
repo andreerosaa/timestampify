@@ -8,16 +8,12 @@ const routes: Routes = [
     path: 'list',
     component: AlbumListComponent,
     loadChildren: () =>
-      import('./modules/album-list/album-list.module').then(
-        (m) => m.AlbumListModule
-      ),
+      import('./modules/album-list/album-list.module').then((m) => m.AlbumListModule),
   },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
-  ],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

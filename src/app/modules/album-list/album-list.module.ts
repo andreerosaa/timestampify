@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { AlbumListRoutingModule } from './album-list-routing.module';
 import { AlbumListComponent } from './album-list-component/album-list.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -12,10 +12,10 @@ import { AlbumCardComponent } from './album-card/album-card.component';
   declarations: [AlbumListComponent, HeaderComponent, AlbumCardComponent],
   imports: [
     CommonModule,
-    AlbumListRoutingModule,
     MatProgressSpinnerModule,
     MatCardModule,
     MatIconModule,
+    AlbumListRoutingModule,
   ],
 })
 export class AlbumListModule {}
