@@ -17,6 +17,8 @@ export class FavouriteIconComponent {
   //Logic to change icon on click and send request to service to update item as favourite
   addOrRemoveFromFavourites() {
     this.isFavourite.favourite = !this.isFavourite.favourite;
+    // Store favourite
+    localStorage.setItem('artist', JSON.stringify(this.artist));
     this._artistsService.toggleAddToFavourites(this.isFavourite).subscribe(
       (res: Favouritable) => {
         console.log('Added to favourites:', res);

@@ -25,9 +25,7 @@ export class AlbumDetailsComponent {
 
   ngOnInit() {
     // Get the albumId from the route parameters
-    this._route.paramMap.subscribe((params: ParamMap) => {
-      this.albumId = params.get('albumId') || '';
-    });
+    this.albumId = this._route.snapshot.paramMap.get('albumId') || '';
 
     // Fetch the artist data from the selected on click
     this._artistsService.selectedArtist.subscribe((selectedArtistInput) => {
@@ -41,35 +39,26 @@ export class AlbumDetailsComponent {
           this.artist = JSON.parse(localStorageArtist);
         }
       }
+    });
 
-      this.artist?.albums.forEach((album) => {
-        if (album.id === this.albumId) {
-          this.getDuration(album);
-          this.album = album;
-          this.isSearching = false;
-          return true;
-        } else {
-          this.isSearching = false;
-          return;
-        }
-      });
+    this.artist?.albums.forEach((album) => {
+      if (album.id === this.albumId) {
+        this.getDuration(album);
+        this.album = album;
+        this.isSearching = false;
 
-      if (!this.album) {
-        // localStorage.clear();
-        // this._router.navigate(['not-found']);
+        // Store successfully found artists data on local storage
+        localStorage.setItem('artist', JSON.stringify(this.artist));
+        return true;
+      } else {
+        this.isSearching = false;
+        return;
       }
     });
-  }
 
-  ngOnDestroy(): void {
-    // Store artist data on local storage
-    localStorage.setItem('artist', JSON.stringify(this.artist));
-  }
-
-  // On refresh trigger ngOnDestroy
-  @HostListener('window:beforeunload', ['$event'])
-  unloadHandler(event: Event) {
-    this.ngOnDestroy();
+    if (!this.album) {
+      this._router.navigate(['not-found']);
+    }
   }
 
   getDuration(album: Album): Duration {

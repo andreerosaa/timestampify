@@ -17,7 +17,7 @@ export class NotFoundComponent {
 
   IncrementProgressSpinner() {
     if (this.timer > 100) {
-      this._router.navigate(['list']);
+      this._router.navigate(['/']);
       return;
     }
 
