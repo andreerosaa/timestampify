@@ -8,10 +8,9 @@ describe('FavouriteIconComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FavouriteIconComponent]
-    })
-    .compileComponents();
-    
+      declarations: [FavouriteIconComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(FavouriteIconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

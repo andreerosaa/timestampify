@@ -17,10 +17,7 @@ export class AlbumDetailsComponent {
   duration: Duration = { minutes: 0, seconds: 0 };
   isSearching: boolean = true;
 
-  constructor(
-    private _artistsService: ArtistsService,
-    private _route: ActivatedRoute
-  ) {}
+  constructor(private _artistsService: ArtistsService, private _route: ActivatedRoute) {}
 
   ngOnInit() {
     // Get the albumId from the route parameters

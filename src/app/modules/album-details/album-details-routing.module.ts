@@ -6,8 +6,7 @@ const routes: Routes = [
   {
     path: 'list',
     component: AlbumListComponent,
-    loadChildren: () =>
-      import('../album-list/album-list.module').then((m) => m.AlbumListModule),
+    loadChildren: () => import('../album-list/album-list.module').then((m) => m.AlbumListModule),
   },
 ];
 

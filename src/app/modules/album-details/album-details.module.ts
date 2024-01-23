@@ -11,11 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { SongListItemComponent } from './song-list-item-component/song-list-item.component';
 
 @NgModule({
-  declarations: [
-    AlbumDetailsComponent,
-    FavouriteIconComponent,
-    SongListItemComponent,
-  ],
+  declarations: [AlbumDetailsComponent, FavouriteIconComponent, SongListItemComponent],
   imports: [
     CommonModule,
     AlbumDetailsRoutingModule,

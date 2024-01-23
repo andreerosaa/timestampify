@@ -1,14 +1,8 @@
 <div class="fav-btn" (click)="addOrRemoveFromFavourites()">
-  <mat-icon
-    *ngIf="!isFavourite.favourite"
-    aria-hidden="false"
-    aria-label="favourite border icon"
-    >favorite_border</mat-icon
-  >
-  <mat-icon
-    *ngIf="isFavourite.favourite"
-    aria-hidden="false"
-    aria-label="favourite icon"
-    >favorite</mat-icon
-  >
+  <mat-icon *ngIf="!isFavourite.favourite" aria-hidden="false" aria-label="favourite border icon">
+    favorite_border
+  </mat-icon>
+  <mat-icon *ngIf="isFavourite.favourite" aria-hidden="false" aria-label="favourite icon">
+    favorite
+  </mat-icon>
 </div>

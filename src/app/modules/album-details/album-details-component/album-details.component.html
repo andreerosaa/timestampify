@@ -5,27 +5,19 @@
         <mat-card-title>{{ album.title }}</mat-card-title>
         <mat-card-subtitle>{{ artist.name }}</mat-card-subtitle>
         <div class="go-back-wrapper">
-          <a class="go-back" [routerLink]="['/list']"
-            ><mat-icon class="back-icon">arrow_back_ios</mat-icon>
-            <p>Go Back</p></a
-          >
+          <a class="go-back" [routerLink]="['/list']">
+            <mat-icon class="back-icon">arrow_back_ios</mat-icon>
+            <p>Go Back</p>
+          </a>
         </div>
-        <img
-          mat-card-xl-image
-          src="{{ album.coverArt }}"
-          alt="Album Cover Art"
-        />
+        <img mat-card-xl-image src="{{ album.coverArt }}" alt="Album Cover Art" />
       </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
       <p class="description">{{ album.description }}</p>
-
       <div class="details">
         <div class="add-fav">
-          <app-favourite-icon
-            [isFavourite]="album"
-            [artist]="artist"
-          ></app-favourite-icon>
+          <app-favourite-icon [isFavourite]="album" [artist]="artist"></app-favourite-icon>
           <p class="favourites-p">Add to Favourites</p>
         </div>
         <div class="duration">
@@ -34,16 +26,13 @@
         </div>
       </div>
       <mat-list *ngFor="let song of album.songs">
-        <app-song-list-item
-          [artist]="artist"
-          [song]="song"
-        ></app-song-list-item>
+        <app-song-list-item [artist]="artist" [song]="song"></app-song-list-item>
         <mat-divider></mat-divider>
       </mat-list>
-      <a class="go-back" [routerLink]="['/list']"
-        ><mat-icon class="back-icon">arrow_back_ios</mat-icon>
-        <p>Go Back</p></a
-      >
+      <a class="go-back" [routerLink]="['/list']">
+        <mat-icon class="back-icon">arrow_back_ios</mat-icon>
+        <p>Go Back</p>
+      </a>
     </mat-card-content>
   </mat-card>
 </section>

@@ -7,16 +7,13 @@ const routes: Routes = [
   {
     path: 'list',
     component: AlbumListComponent,
-    loadChildren: () =>
-      import('./album-list.module').then((m) => m.AlbumListModule),
+    loadChildren: () => import('./album-list.module').then((m) => m.AlbumListModule),
   },
   {
     path: 'album/:albumId',
     component: AlbumDetailsComponent,
     loadChildren: () =>
-      import('../album-details/album-details.module').then(
-        (m) => m.AlbumDetailsModule
-      ),
+      import('../album-details/album-details.module').then((m) => m.AlbumDetailsModule),
   },
 ];
 

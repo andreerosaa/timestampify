@@ -13,8 +13,7 @@ export class ArtistsService {
   /** Private Properties */
 
   // JSON Server API url from the environment variable
-  private readonly _apiUrl =
-    environment.apiUrl || 'http://localhost:3000/artists';
+  private readonly _apiUrl = environment.apiUrl || 'http://localhost:3000/artists';
 
   // Backup artists array fetched directly from JSON file
   private readonly _jsonArtists: Array<Artist> = artistsFromJson.artists;
@@ -32,10 +31,7 @@ export class ArtistsService {
   getArtists(): Observable<Array<Artist>> {
     return this._http.get<Array<Artist>>(this._apiUrl).pipe(
       catchError((error) => {
-        console.log(
-          'Error fetching artists, fetching directly from JSON file:',
-          error
-        );
+        console.log('Error fetching artists, fetching directly from JSON file:', error);
         return of(this._jsonArtists);
       })
     );
