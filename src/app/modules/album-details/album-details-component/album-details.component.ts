@@ -55,7 +55,8 @@ export class AlbumDetailsComponent {
       });
 
       if (!this.album) {
-        this._router.navigate(['not-found']);
+        // localStorage.clear();
+        // this._router.navigate(['not-found']);
       }
     });
   }
