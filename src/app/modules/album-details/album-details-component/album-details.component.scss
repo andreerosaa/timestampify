@@ -17,11 +17,10 @@ mat-card {
 
 @media (max-width: 859px) {
   mat-card {
-    margin: 1rem;
-    width: 80%;
+    margin: 0.5rem;
+    width: 90%;
     padding: 0.5rem;
   }
-
   mat-card-title-group {
     align-items: center;
     justify-content: space-between;
@@ -110,4 +109,8 @@ app-favourite-icon {
 
 .description {
   text-align: justify;
+}
+
+mat-card-subtitle {
+  margin-bottom: 0.5rem;
 }
