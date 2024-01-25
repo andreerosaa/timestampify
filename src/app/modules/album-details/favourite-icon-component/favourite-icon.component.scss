@@ -1,3 +1,9 @@
 .fav-btn:hover {
   cursor: pointer;
 }
+
+.fav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
