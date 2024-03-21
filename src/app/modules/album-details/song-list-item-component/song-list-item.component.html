@@ -3,6 +3,11 @@
   <div class="length-fav">
     <p class="song-li-p">{{ song.length }}</p>
     <app-favourite-icon [isFavourite]="song" [artist]="artist"></app-favourite-icon>
+    <div class="remove" (click)="sendSongId()">
+      <mat-icon>
+        clear
+      </mat-icon>
+    </div>
   </div>
 </div>
 <mat-divider></mat-divider>

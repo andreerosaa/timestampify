@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { Artist } from '../../../models/artist';
 import { ArtistsService } from '../../../services/artists.service';
+import { Store } from '@ngrx/store';
+import { selectAllArtists } from '../../../state/artists/artist.selectors';
+import { AppState } from '../../../state/app.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-album-list',
@@ -10,25 +14,31 @@ import { ArtistsService } from '../../../services/artists.service';
 export class AlbumListComponent {
   artists: Array<Artist> = [];
   isSearching: boolean = true;
+  artists$: Observable<Artist[]>;
 
-  constructor(private _artistsService: ArtistsService) {}
-
+  constructor(private store: Store<AppState>, private _artistsService: ArtistsService) {
+    this.artists$ = this.store.select(selectAllArtists);
+  }
+  
   ngOnInit(): void {
     this.isSearching = true;
-    this.fetchArtists();
+    this.setArtists();
   }
 
   // Call artists service on component init to get all artists from json
-  private fetchArtists(): void {
-    this._artistsService.getArtists().subscribe(
+  private setArtists(): void {
+    this.artists$.subscribe(
       (res: Array<Artist>) => {
         this.artists = res;
         console.log('Fetched artists:', this.artists);
-        this.isSearching = false;
+        if(res.length > 0){
+          this.isSearching = false;
+        }
       },
       (error: any) => {
         console.log('Error fetching artists:', error);
+        this.isSearching = false;
       }
-    );
+    )
   }
 }

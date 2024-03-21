@@ -4,6 +4,12 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Artist } from '../../../models/artist';
 import { Album } from '../../../models/album';
 import { Duration } from '../../../models/duration';
+import { AppState } from '../../../state/app.state';
+import { Store } from '@ngrx/store';
+import { addSong, removeSong, selectAlbum } from '../../../state/artists/artist.actions';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { selectedAlbum } from '../../../state/artists/artist.selectors';
 
 @Component({
   selector: 'app-album-details',
@@ -11,58 +17,88 @@ import { Duration } from '../../../models/duration';
   styleUrl: './album-details.component.scss',
 })
 export class AlbumDetailsComponent {
+
   artist: Artist | undefined;
+
   albumId: string = '';
   album: Album | undefined;
+  album$: Observable<Album | null>;
+
   duration: Duration = { minutes: 0, seconds: 0 };
+
   isSearching: boolean = true;
 
+  addSongForm: FormGroup;
+
   constructor(
+    private store: Store<AppState>,
     private _artistsService: ArtistsService,
     private _route: ActivatedRoute,
-    private _router: Router
-  ) {}
+    private _router: Router,
+    private addSongFormBuilder: FormBuilder
+  ) {
+    this.addSongForm = this.addSongFormBuilder.group({
+      title:['',[Validators.required]],
+      length:['',[Validators.required]]
+    })
+
+    this.album$ = this.store.select(selectedAlbum);
+  }
 
   ngOnInit() {
-    // Get the albumId from the route parameters
-    this.albumId = this._route.snapshot.paramMap.get('albumId') || '';
+    // subscribe to the currently selected album
+    this.album$.subscribe(album => {
+      if(album){
+        this.isSearching = false;
+        this.getDuration(album);
+      }
+    })
+    // // Get the albumId from the route parameters
+    // this.albumId = this._route.snapshot.paramMap.get('albumId') || '';
 
     // Fetch the artist data from the selected on click
     this._artistsService.selectedArtist.subscribe((selectedArtistInput) => {
       // Find the artist that contains the requested album
       this.artist = selectedArtistInput;
+    })
 
-      // In case the artist data is not found, fetch from local storage
-      if (!this.artist) {
-        let localStorageArtist = localStorage.getItem('artist');
-        if (localStorageArtist) {
-          this.artist = JSON.parse(localStorageArtist);
-        }
-      }
-    });
+    //   // In case the artist data is not found, fetch from local storage
+    //   if (!this.artist) {
+    //     let localStorageArtist = localStorage.getItem('artist');
+    //     if (localStorageArtist) {
+    //       this.artist = JSON.parse(localStorageArtist);
+    //     }
+    //   }
+    // });
 
-    this.artist?.albums.forEach((album) => {
-      if (album.id === this.albumId) {
-        this.getDuration(album);
-        this.album = album;
-        this.isSearching = false;
+    // this.artist?.albums.forEach((album) => {
+    //   if (album.id === this.albumId) {
+    //     this.getDuration(album);
+    //     this.album = album;
+    //     this.isSearching = false;
 
-        // Store successfully found artists data on local storage
-        localStorage.setItem('artist', JSON.stringify(this.artist));
-        return true;
-      } else {
-        this.isSearching = false;
-        return;
-      }
-    });
+    //     // Store successfully found artists data on local storage
+    //     localStorage.setItem('artist', JSON.stringify(this.artist));
+    //     return true;
+    //   } else {
+    //     this.isSearching = false;
+    //     return;
+    //   }
+    // });
 
-    if (!this.album) {
-      this._router.navigate(['not-found']);
-    }
+    // this.album$.subscribe(album => {
+    //   if(album)
+    //   this.album = album;
+    //   this.isSearching = false
+    // })
+
+    // if (!this.album) {
+    //   this._router.navigate(['not-found']);
+    // }
   }
 
   getDuration(album: Album): Duration {
-    let durationInSeconds = this.parseToSeconds(this.duration);
+    let durationInSeconds = 0;
     album.songs.forEach((song) => {
       let songLength = this.parseSongLength(song.length);
       let songLengthInSeconds = 0;
@@ -109,5 +145,24 @@ export class AlbumDetailsComponent {
     }
 
     return convertedDuration;
+  }
+
+  addSong(albumId:string): void{
+    const songToAdd = this.addSongForm.value;
+
+    if(this.artist){
+      songToAdd.favourite = false;
+      songToAdd.id = this.artist?.id + albumId + songToAdd.title.toLowerCase().trim();
+      const artistId = this.artist?.id;
+      this.store.dispatch(addSong({ artistId, albumId, songToAdd }));
+      this.addSongForm.reset();
+    }
+  }
+
+  removeSong(songId:string, albumId: string): void{
+    if(this.artist){
+      const artistId = this.artist?.id;
+      this.store.dispatch(removeSong({ artistId, albumId, songId }));
+    }
   }
 }

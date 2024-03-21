@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Artist } from '../../../models/artist';
 import { Song } from '../../../models/song';
 
@@ -10,4 +10,11 @@ import { Song } from '../../../models/song';
 export class SongListItemComponent {
   @Input() song: Song | undefined;
   @Input() artist: Artist | undefined;
+  @Output() sendId: EventEmitter<string> = new EventEmitter<string>();
+
+  sendSongId(){
+    if(this.song){
+      this.sendId.emit(this.song.id);
+    }
+  }
 }

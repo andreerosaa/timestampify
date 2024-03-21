@@ -9,6 +9,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { SongListItemComponent } from './song-list-item-component/song-list-item.component';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AlbumDetailsComponent, FavouriteIconComponent, SongListItemComponent],
@@ -20,6 +25,13 @@ import { SongListItemComponent } from './song-list-item-component/song-list-item
     MatCardModule,
     MatDividerModule,
     MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
 })
 export class AlbumDetailsModule {}

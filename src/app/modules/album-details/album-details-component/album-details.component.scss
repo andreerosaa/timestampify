@@ -15,6 +15,16 @@ mat-card {
   -webkit-backdrop-filter: blur(5.8px);
 }
 
+mat-expansion-panel{
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+mat-panel-title{
+  color: #345859;
+  font-family: "Noto Sans";
+}
+
 @media (max-width: 859px) {
   mat-card {
     margin: 0.5rem;
@@ -78,8 +88,12 @@ app-favourite-icon {
 .go-back {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+}
+
+.pointer{
+  cursor: pointer;
 }
 
 .go-back-wrapper {

@@ -1,7 +1,5 @@
 import { Component, Input, Output } from '@angular/core';
 import { Artist } from '../../../models/artist';
-import { FormControl } from '@angular/forms';
-import { Observable, map, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-header',

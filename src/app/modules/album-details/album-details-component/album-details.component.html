@@ -1,9 +1,9 @@
 <section *ngIf="!isSearching; else searchingTemplate">
-  <mat-card *ngIf="artist && album">
+  <mat-card *ngIf="artist && album$ | async as album">
     <mat-card-header>
       <mat-card-title-group>
         <mat-card-title>{{ album.title }}</mat-card-title>
-        <mat-card-subtitle>{{ artist.name }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ artist?.name }}</mat-card-subtitle>
         <div class="go-back-wrapper">
           <a class="go-back" [routerLink]="['/list']">
             <mat-icon class="back-icon">arrow_back_ios</mat-icon>
@@ -26,13 +26,31 @@
         </div>
       </div>
       <mat-list *ngFor="let song of album.songs">
-        <app-song-list-item [artist]="artist" [song]="song"></app-song-list-item>
+        <app-song-list-item [artist]="artist" [song]="song" (sendId)="removeSong($event, album.id)"></app-song-list-item>
         <mat-divider></mat-divider>
       </mat-list>
-      <a class="go-back" [routerLink]="['/list']">
-        <mat-icon class="back-icon">arrow_back_ios</mat-icon>
-        <p>Go Back</p>
-      </a>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon class="back-icon">add_box</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <form [formGroup]="addSongForm" (ngSubmit)="addSong(album.id)">
+          <mat-form-field>
+            <input matInput placeholder="Title" formControlName="title">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="time" placeholder="Length" formControlName="length">
+          </mat-form-field>
+          <button mat-raised-button type="submit">Add</button>
+        </form>
+      </mat-expansion-panel>
+      <div class="go-back">
+        <a class="go-back pointer" [routerLink]="['/list']">
+          <mat-icon class="back-icon">arrow_back_ios</mat-icon>
+          <p>Go Back</p>
+        </a>
+        </div>
     </mat-card-content>
   </mat-card>
 </section>
