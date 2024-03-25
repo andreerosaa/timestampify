@@ -1,8 +1,9 @@
 import { createReducer, on } from "@ngrx/store";
 import { ArtistStatuses } from "../../models/artist-statuses";
 import { Artist } from "../../models/artist";
-import { addSong, loadArtists, loadArtistsFailure, loadArtistsSuccess, removeSong, selectAlbum, toggleFavourite } from "./artist.actions";
+import { addSong, loadArtists, loadArtistsFailure, loadArtistsSuccess, removeSong, selectAlbum, toggleFavouriteAlbum, toggleFavouriteSong } from "./artist.actions";
 import { Album } from "../../models/album";
+import { AlbumCardComponent } from "../../modules/album-list/album-card/album-card.component";
 
 export interface ArtistState{
     artists: Array<Artist>;
@@ -106,9 +107,85 @@ export const artistReducer = createReducer(
         return { ...state, artists: updatedArtists, selectedAlbum: updatedAlbum };
     }),
 
-    // Handle toggling favourites
-    on(toggleFavourite, (state) => {
-        return { ...state};
+    // Handle toggling favourite album
+    on(toggleFavouriteAlbum, (state, { objectToFav }) => {
+      let albumIndex: number = -1;
+      let artistIndex: number = -1;
+    
+      // Find album
+      state.artists.forEach((artistIt, loopIndex) => {
+        const i = artistIt.albums.findIndex((album) => album.id === objectToFav.id);
+        if (i !== -1) {
+          albumIndex = i;
+          artistIndex = loopIndex;
+        }
+      });
+    
+      // If album not found, return the current state
+      if (albumIndex === -1) {
+        return state;
+      }
+    
+      // Update album
+      const updatedAlbum: Album = {
+        ...state.artists[artistIndex].albums[albumIndex],
+        favourite: !objectToFav.favourite,
+      };
+    
+      // Update state with the updated album
+      const updatedArtists: Artist[] = [...state.artists];
+      updatedArtists[artistIndex] = {
+        ...state.artists[artistIndex],
+        albums: state.artists[artistIndex].albums.map((album, index) =>
+          index === albumIndex ? updatedAlbum : album
+        ),
+      };
+    
+      return { ...state, artists: updatedArtists, selectedAlbum: updatedAlbum };
+    }),
+
+    // Handle toggling favourite song
+    on(toggleFavouriteSong, (state, { objectToFav }) => {
+      let songIndex: number = -1;
+      let albumIndex: number = -1;
+      let artistIndex: number = -1;
+    
+      // Find album
+      state.artists.forEach((artistIt, loopIndex) => {
+
+        artistIt.albums.forEach(album => {
+          const i = album.songs.findIndex((song) => song.id === objectToFav.id);
+
+          if (i !== -1) {
+            albumIndex = i;
+            artistIndex = loopIndex;
+          }
+        })
+        
+
+      });
+    
+      // If album not found, return the current state
+      if (albumIndex === -1) {
+        return state;
+      }
+    
+      // Update album
+      const updatedAlbum: Album = {
+        ...state.artists[artistIndex].albums[albumIndex],
+        favourite: !objectToFav.favourite,
+      };
+    
+      // Update state with the updated album
+      const updatedArtists: Artist[] = [...state.artists];
+      updatedArtists[artistIndex] = {
+        ...state.artists[artistIndex],
+        albums: state.artists[artistIndex].albums.map((album, index) =>
+          index === albumIndex ? updatedAlbum : album
+        ),
+      };
+    
+      return { ...state, artists: updatedArtists, selectedAlbum: updatedAlbum };
     }),
 
     on(selectAlbum, (state, {album}) => ({...state, selectedAlbum: album}))

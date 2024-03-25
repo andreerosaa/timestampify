@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import { Favouritable } from '../../../models/favouritable';
 import { Artist } from '../../../models/artist';
 import { ArtistsService } from '../../../services/artists.service';
-import { Album } from '../../../models/album';
-import { Song } from '../../../models/song';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../state/app.state';
-import { toggleFavourite } from '../../../state/artists/artist.actions';
+import { toggleFavouriteAlbum } from '../../../state/artists/artist.actions';
+import { toggleFavouriteSong} from '../../../state/artists/artist.actions';
+import { Album } from '../../../models/album';
+import { Song } from '../../../models/song';
 
 @Component({
   selector: 'app-favourite-icon',
@@ -24,7 +25,11 @@ export class FavouriteIconComponent {
 
   //Logic to change icon on click and send request to service to update item as favourite
   addOrRemoveFromFavourites() {
-    this.store.dispatch(toggleFavourite({objectToFav: this.isFavourite}));
+    if(this.isAlbum(this.isFavourite)){
+      this.store.dispatch(toggleFavouriteAlbum({objectToFav: this.isFavourite as Album}));
+    } else if(this.isSong(this.isFavourite)) {
+      this.store.dispatch(toggleFavouriteSong({objectToFav: this.isFavourite as Song}));
+    }
 
     // this.isFavourite.favourite = !this.isFavourite.favourite;
     // // Store favourite
@@ -38,5 +43,14 @@ export class FavouriteIconComponent {
     //     console.log('Error adding to favourites:', error);
     //   }
     // );
+  }
+
+
+  isAlbum(objToFav: any): objToFav is Album {
+    return (objToFav as Album).songs !== undefined;
+  }
+  
+  isSong(objToFav: any): objToFav is Song {
+    return (objToFav as Song).length !== undefined;
   }
 }
