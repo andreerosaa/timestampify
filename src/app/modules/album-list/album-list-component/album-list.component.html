@@ -1,4 +1,4 @@
-<section *ngIf="!isSearching; else searchingTemplate">
+<section class="px-8" *ngIf="!isSearching; else searchingTemplate">
   <app-header></app-header>
   <div class="album-list" *ngFor="let artist of artists">
     <div *ngFor="let album of artist.albums">

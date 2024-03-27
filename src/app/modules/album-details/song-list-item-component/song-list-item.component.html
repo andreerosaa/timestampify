@@ -1,9 +1,9 @@
-<div class="song-li" *ngIf="song && artist">
-  <p class="song-li-p">{{ song.title }}</p>
-  <div class="length-fav">
-    <p class="song-li-p">{{ song.length }}</p>
+<div class="flex justify-between mb-4" *ngIf="song && artist">
+  <p class="m-0 mr-5">{{ song.title }}</p>
+  <div class="flex flex-row align-center">
+    <p class="m-0 mr-5">{{ song.length }}</p>
     <app-favourite-icon [isFavourite]="song" [artist]="artist"></app-favourite-icon>
-    <div class="remove" (click)="sendSongId()">
+    <div class="cursor-pointer flex align-center justify-center" (click)="sendSongId()">
       <mat-icon>
         clear
       </mat-icon>

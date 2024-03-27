@@ -1,18 +1,7 @@
 mat-card {
-  margin-bottom: 3rem;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5.8px);
   -webkit-backdrop-filter: blur(5.8px);
-}
-
-.card-title-group-container {
-  width: 100%;
-}
-
-img {
-  aspect-ratio: 1/1;
-  border-radius: 0.2rem;
-  margin-right: 0.6rem;
 }

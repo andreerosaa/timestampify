@@ -1,15 +1,5 @@
-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 mat-card {
-  margin: 3rem;
-  width: 48%;
-  padding: 1.5rem;
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5.8px);
   -webkit-backdrop-filter: blur(5.8px);
@@ -48,83 +38,17 @@ mat-panel-title{
   }
 }
 
-mat-card-title-group {
-  flex-wrap: wrap;
-}
-
 mat-progress-spinner {
   position: fixed;
   top: calc(50% - 50px);
   left: calc(50% - 50px);
 }
 
-img {
-  border-radius: 0.5rem;
-}
-
-.song-li {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-mat-list {
-  margin-top: 1rem;
-}
-
-.add-fav {
-  display: flex;
-  align-items: center;
-}
-
-app-favourite-icon {
-  margin-right: 0.5rem;
-}
-
 .back-icon {
   transform: scale(0.8);
-}
-
-.go-back {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.pointer{
-  cursor: pointer;
-}
-
-.go-back-wrapper {
-  display: flex;
-  width: 100%;
-  justify-content: start;
-}
-
-.details {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.duration {
-  text-align: end;
 }
 
 .length {
   background-color: #345859;
   color: #f9efdb;
-  white-space: nowrap;
-  border-radius: 0.3rem;
-  padding: 0.3rem;
-  margin-right: 0.3rem;
-}
-
-.description {
-  text-align: justify;
-}
-
-mat-card-subtitle {
-  margin-bottom: 0.5rem;
 }

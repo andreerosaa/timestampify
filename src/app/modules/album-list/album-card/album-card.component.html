@@ -1,8 +1,8 @@
-<mat-card *ngIf="album && artist">
+<mat-card class="mb-12" *ngIf="album && artist">
   <a [routerLink]="['/album', album.id]" (click)="selectArtistData(artist, album)">
     <mat-card-header>
-      <img mat-card-md-image src="{{ album.coverArt }}" alt="Album Cover Art" />
-      <div class="card-title-group-container">
+      <img class="aspect-square rounded mr-2.5" mat-card-md-image src="{{ album.coverArt }}" alt="Album Cover Art" />
+      <div class="w-full">
         <mat-card-title-group>
           <mat-card-title>{{ album.title }}</mat-card-title>
           <mat-card-subtitle>{{ artist.name }}</mat-card-subtitle>

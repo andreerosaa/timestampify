@@ -1,7 +1,7 @@
-<section class="not-found">
-  <h3>Oops...couldn't find that! Redirecting</h3>
+<section class="flex flex-col items-center justify-center p-4 h-screen">
+  <h3 class="text-center">Oops...couldn't find that! Redirecting</h3>
   <mat-progress-spinner mode="determinate" [value]="timer"></mat-progress-spinner>
-  <a class="go-back" [routerLink]="['/list']">
+  <a class="flex flex-row justify-center items-center" [routerLink]="['/list']">
     <mat-icon class="back-icon">arrow_back_ios</mat-icon>
     <p>Go Back</p>
   </a>
