@@ -3,7 +3,6 @@ import { ArtistStatuses } from "../../models/artist-statuses";
 import { Artist } from "../../models/artist";
 import { addSong, loadArtists, loadArtistsFailure, loadArtistsSuccess, removeSong, selectAlbum, toggleFavouriteAlbum, toggleFavouriteSong } from "./artist.actions";
 import { Album } from "../../models/album";
-import { AlbumCardComponent } from "../../modules/album-list/album-card/album-card.component";
 
 export interface ArtistState{
     artists: Array<Artist>;
@@ -20,7 +19,6 @@ export const initialState: ArtistState = {
 }
 
 export const artistReducer = createReducer(
-    // Supply the initial state
     initialState,
 
     // Trigger loading the artists

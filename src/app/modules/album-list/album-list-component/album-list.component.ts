@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { selectAllArtists } from '../../../state/artists/artist.selectors';
 import { AppState } from '../../../state/app.state';
 import { Observable } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-album-list',
@@ -15,10 +16,23 @@ export class AlbumListComponent {
   artists: Array<Artist> = [];
   isSearching: boolean = true;
   artists$: Observable<Artist[]>;
+  addAlbumForm: FormGroup;
 
-  constructor(private store: Store<AppState>, private _artistsService: ArtistsService) {
+  constructor(
+    private store: Store<AppState>,
+    private _artistsService: ArtistsService,
+    private addAlbumFormBuilder: FormBuilder
+    ){
     this.artists$ = this.store.select(selectAllArtists);
-  }
+    this.addAlbumForm = this.addAlbumFormBuilder.group({
+      title:'',
+      description:'',
+      cover:'',
+      artist:'',
+      songTitle:['',[Validators.required]],
+      length:['',[Validators.required]]
+    })
+    }
   
   ngOnInit(): void {
     this.isSearching = true;
@@ -40,5 +54,8 @@ export class AlbumListComponent {
         this.isSearching = false;
       }
     )
+  }
+
+  addAlbum(): void{
   }
 }

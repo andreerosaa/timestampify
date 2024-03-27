@@ -11,7 +11,6 @@ export class ArtistEffects{
     private artistsService: ArtistsService
    ){}
 
-   // Run this code when a loadArtists action is dispatched
    loadArtists$ = createEffect(() =>
         this.actions$.pipe(
             ofType(loadArtists),

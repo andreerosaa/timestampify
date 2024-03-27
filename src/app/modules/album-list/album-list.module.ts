@@ -7,6 +7,10 @@ import { HeaderComponent } from './header-component/header.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { AlbumCardComponent } from './album-card/album-card.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [AlbumListComponent, HeaderComponent, AlbumCardComponent],
@@ -16,6 +20,11 @@ import { AlbumCardComponent } from './album-card/album-card.component';
     MatCardModule,
     MatIconModule,
     AlbumListRoutingModule,
-  ],
+    MatExpansionModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    FormsModule
+    ],
 })
 export class AlbumListModule {}
