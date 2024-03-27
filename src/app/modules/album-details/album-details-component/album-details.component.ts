@@ -48,9 +48,12 @@ export class AlbumDetailsComponent {
   ngOnInit() {
     // subscribe to the currently selected album
     this.album$.subscribe(album => {
-      if(album){
+      if(album) {
         this.isSearching = false;
         this.getDuration(album);
+      }
+      else {
+        this._router.navigate(['not-found']);
       }
     })
     // // Get the albumId from the route parameters
@@ -91,10 +94,6 @@ export class AlbumDetailsComponent {
     //   this.album = album;
     //   this.isSearching = false
     // })
-
-    // if (!this.album) {
-    //   this._router.navigate(['not-found']);
-    // }
   }
 
   getDuration(album: Album): Duration {
