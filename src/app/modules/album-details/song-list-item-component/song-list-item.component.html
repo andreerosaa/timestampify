@@ -2,11 +2,15 @@
   <p class="m-0 mr-5">{{ song.title }}</p>
   <div class="flex flex-row align-center">
     <p class="m-0 mr-5">{{ song.length }}</p>
-    <app-favourite-icon [isFavourite]="song" [artist]="artist"></app-favourite-icon>
-    <div class="cursor-pointer flex align-center justify-center" (click)="sendSongId()">
-      <mat-icon>
-        clear
-      </mat-icon>
+    <app-favourite-icon
+      [isFavourite]="song"
+      [artist]="artist"
+    ></app-favourite-icon>
+    <div
+      class="cursor-pointer flex align-center justify-center"
+      (click)="sendSongId()"
+    >
+      <mat-icon> clear </mat-icon>
     </div>
   </div>
 </div>

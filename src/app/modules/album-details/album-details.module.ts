@@ -17,7 +17,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [AlbumDetailsComponent, FavouriteIconComponent, SongListItemComponent],
+  declarations: [
+    AlbumDetailsComponent,
+    FavouriteIconComponent,
+    SongListItemComponent,
+  ],
   imports: [
     CommonModule,
     AlbumDetailsRoutingModule,
@@ -33,7 +37,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatExpansionModule,
     MatIconModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 })
 export class AlbumDetailsModule {}

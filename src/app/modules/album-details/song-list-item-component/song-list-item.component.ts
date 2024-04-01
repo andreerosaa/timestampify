@@ -12,8 +12,8 @@ export class SongListItemComponent {
   @Input() artist: Artist | undefined;
   @Output() sendId: EventEmitter<string> = new EventEmitter<string>();
 
-  sendSongId(){
-    if(this.song){
+  sendSongId() {
+    if (this.song) {
       this.sendId.emit(this.song.id);
     }
   }

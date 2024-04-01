@@ -6,7 +6,11 @@ import { Album } from '../../../models/album';
 import { Duration } from '../../../models/duration';
 import { AppState } from '../../../state/app.state';
 import { Store } from '@ngrx/store';
-import { addSong, removeSong, selectAlbum } from '../../../state/artists/artist.actions';
+import {
+  addSong,
+  removeSong,
+  selectAlbum,
+} from '../../../state/artists/artist.actions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { selectedAlbum } from '../../../state/artists/artist.selectors';
@@ -17,7 +21,6 @@ import { selectedAlbum } from '../../../state/artists/artist.selectors';
   styleUrl: './album-details.component.scss',
 })
 export class AlbumDetailsComponent {
-
   artist: Artist | undefined;
 
   albumId: string = '';
@@ -38,24 +41,23 @@ export class AlbumDetailsComponent {
     private addSongFormBuilder: FormBuilder
   ) {
     this.addSongForm = this.addSongFormBuilder.group({
-      title:['',[Validators.required]],
-      length:['',[Validators.required]]
-    })
+      title: ['', [Validators.required]],
+      length: ['', [Validators.required]],
+    });
 
     this.album$ = this.store.select(selectedAlbum);
   }
 
   ngOnInit() {
     // subscribe to the currently selected album
-    this.album$.subscribe(album => {
-      if(album) {
+    this.album$.subscribe((album) => {
+      if (album) {
         this.isSearching = false;
         this.getDuration(album);
-      }
-      else {
+      } else {
         this._router.navigate(['not-found']);
       }
-    })
+    });
     // // Get the albumId from the route parameters
     // this.albumId = this._route.snapshot.paramMap.get('albumId') || '';
 
@@ -63,7 +65,7 @@ export class AlbumDetailsComponent {
     this._artistsService.selectedArtist.subscribe((selectedArtistInput) => {
       // Find the artist that contains the requested album
       this.artist = selectedArtistInput;
-    })
+    });
 
     //   // In case the artist data is not found, fetch from local storage
     //   if (!this.artist) {
@@ -146,20 +148,21 @@ export class AlbumDetailsComponent {
     return convertedDuration;
   }
 
-  addSong(albumId:string): void{
+  addSong(albumId: string): void {
     const songToAdd = this.addSongForm.value;
 
-    if(this.artist && this.addSongForm.valid){
+    if (this.artist && this.addSongForm.valid) {
       songToAdd.favourite = false;
-      songToAdd.id = this.artist?.id + albumId + songToAdd.title.toLowerCase().trim();
+      songToAdd.id =
+        this.artist?.id + albumId + songToAdd.title.toLowerCase().trim();
       const artistId = this.artist?.id;
       this.store.dispatch(addSong({ artistId, albumId, songToAdd }));
       this.addSongForm.reset();
     }
   }
 
-  removeSong(songId:string, albumId: string): void{
-    if(this.artist){
+  removeSong(songId: string, albumId: string): void {
+    if (this.artist) {
       const artistId = this.artist?.id;
       this.store.dispatch(removeSong({ artistId, albumId, songId }));
     }
