@@ -35,14 +35,16 @@
             <mat-icon class="back-icon">add_box</mat-icon>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <form [formGroup]="addSongForm" (ngSubmit)="addSong(album.id)">
-          <mat-form-field>
-            <input matInput placeholder="Title" formControlName="title">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput type="time" placeholder="Length" formControlName="length">
-          </mat-form-field>
-          <button mat-raised-button type="submit">Add</button>
+        <form [formGroup]="addSongForm" (ngSubmit)="addSong(album.id)" class="flex justify-between items-center">
+          <div class="flex justify-between items-center w-full">
+            <mat-form-field>
+              <input matInput placeholder="Title" formControlName="title">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="time" placeholder="Length" formControlName="length">
+            </mat-form-field>
+            <button mat-raised-button [disabled]="!addSongForm.valid" color="primary" type="submit">Add</button>
+          </div>
         </form>
       </mat-expansion-panel>
       <div class="flex flex-row justify-between align-center mt-6">

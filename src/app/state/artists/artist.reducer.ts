@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { ArtistStatuses } from "../../models/artist-statuses";
 import { Artist } from "../../models/artist";
-import { addSong, loadArtists, loadArtistsFailure, loadArtistsSuccess, removeSong, selectAlbum, toggleFavouriteAlbum, toggleFavouriteSong } from "./artist.actions";
+import { addAlbum, addSong, loadArtists, loadArtistsFailure, loadArtistsSuccess, removeSong, selectAlbum, toggleFavouriteAlbum, toggleFavouriteSong } from "./artist.actions";
 import { Album } from "../../models/album";
 
 export interface ArtistState{
@@ -41,18 +41,28 @@ export const artistReducer = createReducer(
         status: ArtistStatuses.error
     })),
 
+    // Handle adding new album
+    on(addAlbum, (state , {newArtist}) => {
+      // Update state with the updated album
+      const updatedArtists = [...state.artists];
+
+      updatedArtists.push(newArtist)
+
+      return { ...state, artists: updatedArtists};
+  }),
+
     // Handle adding new songs to albums
     on(addSong, (state , {artistId, albumId, songToAdd}) => {
         // Find artist
         const artistIndex = state.artists.findIndex((artist) => artist.id === artistId);
         if (artistIndex === -1) {
-        return state;
+          return state;
         }
 
         // Find album
         const albumIndex = state.artists[artistIndex].albums.findIndex((album) => album.id === albumId);
         if (albumIndex === -1) {
-        return state;
+          return state;
         }
 
         // Update album with added song

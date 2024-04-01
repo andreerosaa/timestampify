@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AlbumDetailsComponent, FavouriteIconComponent, SongListItemComponent],
@@ -23,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatProgressSpinnerModule,
     MatCardModule,
+    MatButtonModule,
     MatDividerModule,
     MatListModule,
     MatFormFieldModule,

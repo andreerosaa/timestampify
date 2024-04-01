@@ -149,7 +149,7 @@ export class AlbumDetailsComponent {
   addSong(albumId:string): void{
     const songToAdd = this.addSongForm.value;
 
-    if(this.artist){
+    if(this.artist && this.addSongForm.valid){
       songToAdd.favourite = false;
       songToAdd.id = this.artist?.id + albumId + songToAdd.title.toLowerCase().trim();
       const artistId = this.artist?.id;

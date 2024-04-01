@@ -19,18 +19,29 @@
         <input matInput placeholder="Description" formControlName="description">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Cover" formControlName="cover">
+        <input matInput type="URL" placeholder="Cover" formControlName="cover">
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Artist" formControlName="artist">
       </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="SongTitle" formControlName="songTitle">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="time" placeholder="Length" formControlName="length">
-      </mat-form-field>
-      <button mat-raised-button type="submit">Add</button>
+      <div formArrayName="songs">
+      <div *ngFor="let song of songs.controls; let i=index" [formGroupName]="i">
+        <div class="flex justify-between items-center mt-4">
+          <mat-form-field class="mr-4">
+            <input matInput placeholder="SongTitle" formControlName="songTitle">
+          </mat-form-field>
+          <mat-form-field class="mr-4">
+            <input matInput type="time" placeholder="Length" formControlName="length">
+          </mat-form-field>
+          <button mat-raised-button class="mb-4 items-end" [disabled]="songs.length <= 1" color="warn" type="button" (click)="removeSong(i)">Remove Song</button>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+    <div class="flex justify-end mt-4">
+      <button mat-raised-button class="mr-4" color="primary" type="button" (click)="addSong()">Add New Song</button>
+      <button mat-raised-button type="submit" color="secondary" [disabled]="!addAlbumForm.valid">Save Album</button>
+    </div>
     </form>
   </mat-expansion-panel>
 </section>

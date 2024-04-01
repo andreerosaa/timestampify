@@ -15,6 +15,11 @@ export const loadArtistsFailure = createAction(
     props<{error: String}>()
 );
 
+export const addAlbum = createAction(
+    '[Album List] Add Album',
+    props<{ newArtist: Artist }>()
+);
+
 export const addSong = createAction(
     '[Album Details] Add Song',
     props<{ artistId: string; albumId: string; songToAdd: Song }>()
