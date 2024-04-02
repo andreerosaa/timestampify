@@ -218,5 +218,6 @@ export const artistReducer = createReducer(
     return { ...state, artists: updatedArtists, selectedAlbum: updatedAlbum };
   }),
 
+  // Handle selecting different album
   on(selectAlbum, (state, { album }) => ({ ...state, selectedAlbum: album }))
 );

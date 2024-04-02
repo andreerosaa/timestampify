@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { Artist } from '../../../models/artist';
 import { ArtistsService } from '../../../services/artists.service';
 import { Store } from '@ngrx/store';
-import { selectAllArtists } from '../../../state/artists/artist.selectors';
+import {
+  selectAllArtists,
+  selectFavouriteAlbums,
+} from '../../../state/artists/artist.selectors';
 import { AppState } from '../../../state/app.state';
 import { Observable } from 'rxjs';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -19,13 +22,14 @@ export class AlbumListComponent {
   artists: Array<Artist> = [];
   isSearching: boolean = true;
   artists$: Observable<Artist[]>;
+  artistsFav$: Observable<Artist[]>;
   addAlbumForm: FormGroup;
 
   constructor(
     private store: Store<AppState>,
-    private _artistsService: ArtistsService,
     private addAlbumFormBuilder: FormBuilder
   ) {
+    this.artistsFav$ = this.store.select(selectFavouriteAlbums);
     this.artists$ = this.store.select(selectAllArtists);
     this.addAlbumForm = this.addAlbumFormBuilder.group({
       title: ['', [Validators.required]],
@@ -115,5 +119,16 @@ export class AlbumListComponent {
 
   removeSong(index: number) {
     this.songs.removeAt(index);
+  }
+
+  onSlideToggleChange(event: boolean) {
+    console.log('Slide toggle changed:', event);
+    if (event) {
+      this.artistsFav$.subscribe((res) => {
+        this.artists = res;
+      });
+    } else {
+      this.setArtists();
+    }
   }
 }
