@@ -122,7 +122,6 @@ export class AlbumListComponent {
   }
 
   onSlideToggleChange(event: boolean) {
-    console.log('Slide toggle changed:', event);
     if (event) {
       this.artistsFav$.subscribe((res) => {
         this.artists = res;
