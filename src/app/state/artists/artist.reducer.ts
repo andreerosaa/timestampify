@@ -13,6 +13,7 @@ import {
   toggleFavouriteSong,
 } from './artist.actions';
 import { Album } from '../../models/album';
+import { Song } from '../../models/song';
 
 export interface ArtistState {
   artists: Array<Artist>;
@@ -183,27 +184,44 @@ export const artistReducer = createReducer(
     let albumIndex: number = -1;
     let artistIndex: number = -1;
 
-    // Find album
+    // Find song
     state.artists.forEach((artistIt, loopIndex) => {
-      artistIt.albums.forEach((album) => {
-        const i = album.songs.findIndex((song) => song.id === objectToFav.id);
+      artistIt.albums.forEach((alb) => {
+        const songIx = alb.songs.findIndex(
+          (song) => song.id === objectToFav.id
+        );
 
-        if (i !== -1) {
-          albumIndex = i;
-          artistIndex = loopIndex;
+        if (songIx != -1) {
+          const albIx = artistIt.albums.findIndex(
+            (album) => album.id === alb.id
+          );
+
+          if (albIx !== -1) {
+            songIndex = songIx;
+            albumIndex = albIx;
+            artistIndex = loopIndex;
+          }
         }
       });
     });
 
-    // If album not found, return the current state
-    if (albumIndex === -1) {
+    // If song not found, return the current state
+    if (songIndex === -1) {
       return state;
     }
+
+    // Update song
+    const updatedSong: Song = {
+      ...state.artists[artistIndex].albums[albumIndex].songs[songIndex],
+      favourite: !objectToFav.favourite,
+    };
 
     // Update album
     const updatedAlbum: Album = {
       ...state.artists[artistIndex].albums[albumIndex],
-      favourite: !objectToFav.favourite,
+      songs: state.artists[artistIndex].albums[albumIndex].songs.map(
+        (song, index) => (index === songIndex ? updatedSong : song)
+      ),
     };
 
     // Update state with the updated album
