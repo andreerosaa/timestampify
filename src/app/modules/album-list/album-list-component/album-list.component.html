@@ -56,13 +56,13 @@
             </mat-form-field>
             <button
               mat-raised-button
-              class="mb-4 items-end"
+              class="mb-4 flex items-center justify-center"
               [disabled]="songs.length <= 1"
               color="warn"
               type="button"
               (click)="removeSong(i)"
             >
-              Remove Song
+              <mat-icon id="remove-icon">clear</mat-icon>
             </button>
           </div>
           <mat-divider></mat-divider>

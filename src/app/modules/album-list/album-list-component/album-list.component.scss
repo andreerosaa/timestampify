@@ -11,7 +11,7 @@ mat-progress-spinner {
   left: calc(50% - 50px);
 }
 
-mat-expansion-panel{
+mat-expansion-panel {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
@@ -19,6 +19,10 @@ mat-expansion-panel{
   -webkit-backdrop-filter: blur(5.8px);
 }
 
-mat-form-field{
+mat-form-field {
   display: block;
+}
+
+#remove-icon {
+  margin: 0;
 }
