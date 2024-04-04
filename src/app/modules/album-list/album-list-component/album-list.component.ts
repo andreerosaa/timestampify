@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 import { Artist } from '../../../models/artist';
-import { ArtistsService } from '../../../services/artists.service';
 import { Store } from '@ngrx/store';
 import {
   selectAllArtists,
   selectFavouriteAlbums,
+  selectedIsFilteredByFavourites,
 } from '../../../state/artists/artist.selectors';
 import { AppState } from '../../../state/app.state';
 import { Observable } from 'rxjs';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { addAlbum } from '../../../state/artists/artist.actions';
 import { Album } from '../../../models/album';
-import { Song } from '../../../models/song';
 
 @Component({
   selector: 'app-album-list',
@@ -19,16 +18,17 @@ import { Song } from '../../../models/song';
   styleUrl: './album-list.component.scss',
 })
 export class AlbumListComponent {
-  artists: Array<Artist> = [];
   isSearching: boolean = true;
   artists$: Observable<Artist[]>;
   artistsFav$: Observable<Artist[]>;
+  filterFav$: Observable<boolean>;
   addAlbumForm: FormGroup;
 
   constructor(
     private store: Store<AppState>,
     private addAlbumFormBuilder: FormBuilder
   ) {
+    this.filterFav$ = this.store.select(selectedIsFilteredByFavourites);
     this.artistsFav$ = this.store.select(selectFavouriteAlbums);
     this.artists$ = this.store.select(selectAllArtists);
     this.addAlbumForm = this.addAlbumFormBuilder.group({
@@ -42,24 +42,20 @@ export class AlbumListComponent {
 
   ngOnInit(): void {
     this.isSearching = true;
-    this.setArtists();
-  }
 
-  // Call artists service on component init to get all artists from json
-  private setArtists(): void {
-    this.artists$.subscribe(
-      (res: Array<Artist>) => {
-        this.artists = res;
-        console.log('Fetched artists:', this.artists);
+    this.filterFav$.subscribe((isFiltered) => {
+      if (isFiltered === true) {
+        this.artists$ = this.store.select(selectFavouriteAlbums);
+      } else {
+        this.artists$ = this.store.select(selectAllArtists);
+      }
+
+      this.artists$.subscribe((res) => {
         if (res.length > 0) {
           this.isSearching = false;
         }
-      },
-      (error: any) => {
-        console.log('Error fetching artists:', error);
-        this.isSearching = false;
-      }
-    );
+      });
+    });
   }
 
   addAlbum(): void {
@@ -119,15 +115,5 @@ export class AlbumListComponent {
 
   removeSong(index: number) {
     this.songs.removeAt(index);
-  }
-
-  onSlideToggleChange(event: boolean) {
-    if (event) {
-      this.artistsFav$.subscribe((res) => {
-        this.artists = res;
-      });
-    } else {
-      this.setArtists();
-    }
   }
 }

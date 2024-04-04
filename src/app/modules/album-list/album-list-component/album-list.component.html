@@ -1,6 +1,6 @@
 <section class="px-8" *ngIf="!isSearching; else searchingTemplate">
-  <app-header (slideToggleChange)="onSlideToggleChange($event)"></app-header>
-  <div class="album-list" *ngFor="let artist of artists">
+  <app-header></app-header>
+  <div class="album-list" *ngFor="let artist of artists$ | async">
     <div *ngFor="let album of artist.albums">
       <app-album-card [album]="album" [artist]="artist"></app-album-card>
     </div>

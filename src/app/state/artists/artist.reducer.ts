@@ -4,6 +4,7 @@ import { Artist } from '../../models/artist';
 import {
   addAlbum,
   addSong,
+  filterFavs,
   loadArtists,
   loadArtistsFailure,
   loadArtistsSuccess,
@@ -14,10 +15,12 @@ import {
 } from './artist.actions';
 import { Album } from '../../models/album';
 import { Song } from '../../models/song';
+import { state } from '@angular/animations';
 
 export interface ArtistState {
   artists: Array<Artist>;
   selectedAlbum: Album | null;
+  filterByFavourites: boolean;
   error: String | null;
   status: ArtistStatuses;
 }
@@ -25,12 +28,19 @@ export interface ArtistState {
 export const initialState: ArtistState = {
   artists: [],
   selectedAlbum: null,
+  filterByFavourites: false,
   error: null,
   status: ArtistStatuses.pending,
 };
 
 export const artistReducer = createReducer(
   initialState,
+
+  // Handle toggling favourites filter
+  on(filterFavs, (state, { filterByFavourites }) => ({
+    ...state,
+    filterByFavourites: filterByFavourites,
+  })),
 
   // Trigger loading the artists
   on(loadArtists, (state) => ({ ...state, status: ArtistStatuses.loading })),

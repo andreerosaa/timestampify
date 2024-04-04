@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { selectedIsFilteredByFavourites } from '../../../state/artists/artist.selectors';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../state/app.state';
+import { Observable } from 'rxjs';
+import { filterFavs } from '../../../state/artists/artist.actions';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +12,15 @@ import { FormControl } from '@angular/forms';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  @Output() slideToggleChange = new EventEmitter<boolean>();
+  filterFav$: Observable<boolean>;
 
-  toggle = new FormControl('', []);
+  constructor(private store: Store<AppState>) {
+    this.filterFav$ = this.store.select(selectedIsFilteredByFavourites);
+  }
 
   ngOnInit(): void {}
 
   onToggleChange(event: any) {
-    this.slideToggleChange.emit(event.checked);
+    this.store.dispatch(filterFavs({ filterByFavourites: event.checked }));
   }
 }

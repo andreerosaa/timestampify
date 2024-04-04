@@ -19,3 +19,8 @@ export const selectFavouriteAlbums = createSelector(selectArtists, (state) => {
     albums: artist.albums.filter((album) => album.favourite),
   }));
 });
+
+export const selectedIsFilteredByFavourites = createSelector(
+  selectArtists,
+  (state) => state.filterByFavourites
+);

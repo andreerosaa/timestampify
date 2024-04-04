@@ -3,7 +3,7 @@
   <mat-slide-toggle
     class="mt-4"
     color="primary"
-    [formControl]="toggle"
+    [checked]="filterFav$ | async"
     (change)="onToggleChange($event)"
     >Favourites</mat-slide-toggle
   >
