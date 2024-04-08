@@ -40,15 +40,22 @@ export class SongListItemComponent {
 
   toggleEditSong() {
     this.editing = !this.editing;
+    this.editSongForm.reset();
   }
 
   editSong() {
     if (this.editSongForm.valid && this.artist && this.album && this.song) {
+      let editedLength = this.editSongForm.get('length')?.value;
+
+      if (editedLength[0] === '0') {
+        editedLength = editedLength.substring(1);
+      }
+
       let editedSong: Song = {
         id: this.song.id,
         favourite: this.song.favourite,
         title: this.editSongForm.get('title')?.value,
-        length: this.editSongForm.get('length')?.value,
+        length: editedLength,
       };
 
       this.store.dispatch(
