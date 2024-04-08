@@ -1,3 +1,4 @@
+@if(!editing){
 <div class="flex justify-between mb-4" *ngIf="song && artist">
   <p class="m-0 mr-5">{{ song.title }}</p>
   <div class="flex flex-row align-center">
@@ -8,10 +9,49 @@
     ></app-favourite-icon>
     <div
       class="cursor-pointer flex align-center justify-center"
+      (click)="toggleEditSong()"
+    >
+      <mat-icon>edit</mat-icon>
+    </div>
+    <div
+      class="cursor-pointer flex align-center justify-center"
       (click)="sendSongId()"
     >
       <mat-icon> clear </mat-icon>
     </div>
   </div>
 </div>
+} @else {
+<form
+  class="flex justify-between mb-4"
+  [formGroup]="editSongForm"
+  (ngSubmit)="editSong()"
+  *ngIf="song && artist"
+>
+  <mat-form-field class="mr-4">
+    <input
+      matInput
+      type="text"
+      [placeholder]="song.title"
+      formControlName="title"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      type="time"
+      [value]="song.length"
+      formControlName="length"
+    />
+  </mat-form-field>
+  <div class="flex flex-row align-center">
+    <button (click)="toggleEditSong()">
+      <mat-icon>keyboard_return</mat-icon>
+    </button>
+    <button type="submit">
+      <mat-icon>check</mat-icon>
+    </button>
+  </div>
+</form>
+}
 <mat-divider></mat-divider>

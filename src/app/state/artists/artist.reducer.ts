@@ -4,6 +4,7 @@ import { Artist } from '../../models/artist';
 import {
   addAlbum,
   addSong,
+  editSong,
   filterFavs,
   loadArtists,
   loadArtistsFailure,
@@ -109,6 +110,52 @@ export const artistReducer = createReducer(
     return { ...state, artists: updatedArtists, selectedAlbum: updatedAlbum };
   }),
 
+  // Handle adding new songs to albums
+  on(editSong, (state, { artistId, albumId, newSong }) => {
+    // Find artist
+    const artistIndex = state.artists.findIndex(
+      (artist) => artist.id === artistId
+    );
+    if (artistIndex === -1) {
+      return state;
+    }
+
+    // Find album
+    const albumIndex = state.artists[artistIndex].albums.findIndex(
+      (album) => album.id === albumId
+    );
+    if (albumIndex === -1) {
+      return state;
+    }
+
+    // Find song
+    const songIndex = state.artists[artistIndex].albums[
+      albumIndex
+    ].songs.findIndex((song) => song.id === newSong.id);
+    if (songIndex === -1) {
+      return state;
+    }
+
+    // Update album with edited song
+    const updatedAlbum: Album = {
+      ...state.artists[artistIndex].albums[albumIndex],
+      songs: state.artists[artistIndex].albums[albumIndex].songs.map(
+        (song, index) => (index === songIndex ? newSong : song)
+      ),
+    };
+
+    // Update state with the updated album
+    const updatedArtists = [...state.artists];
+    updatedArtists[artistIndex] = {
+      ...state.artists[artistIndex],
+      albums: state.artists[artistIndex].albums.map((album, index) =>
+        index === albumIndex ? updatedAlbum : album
+      ),
+    };
+
+    return { ...state, artists: updatedArtists, selectedAlbum: updatedAlbum };
+  }),
+
   // Handle removing song from albums
   on(removeSong, (state, { artistId, albumId, songId }) => {
     // Find artist
@@ -127,7 +174,7 @@ export const artistReducer = createReducer(
       return state;
     }
 
-    // Update album with added song
+    // Update album with removed song
     const updatedAlbum: Album = {
       ...state.artists[artistIndex].albums[albumIndex],
       songs: [

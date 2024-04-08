@@ -30,6 +30,11 @@ export const addSong = createAction(
   props<{ artistId: string; albumId: string; songToAdd: Song }>()
 );
 
+export const editSong = createAction(
+  '[Album Details] Edit Song',
+  props<{ artistId: string; albumId: string; newSong: Song }>()
+);
+
 export const removeSong = createAction(
   '[Album Details] Remove Song',
   props<{ artistId: string; albumId: string; songId: string }>()

@@ -1,32 +1,57 @@
-<section class="flex items-center justify-center" *ngIf="!isSearching; else searchingTemplate">
-  <mat-card class="m-12 w-2/4 p-6 rounded-2xl" *ngIf="artist && album$ | async as album">
+<section
+  class="flex items-center justify-center"
+  *ngIf="!isSearching; else searchingTemplate"
+>
+  <mat-card
+    class="m-12 w-2/4 p-6 rounded-2xl"
+    *ngIf="artist && album$ | async as album"
+  >
     <mat-card-header class="mb-4">
       <mat-card-title-group class="flex-wrap">
         <mat-card-title>{{ album.title }}</mat-card-title>
         <mat-card-subtitle class="mb-2">{{ artist?.name }}</mat-card-subtitle>
         <div class="flex w-full justify-start">
-          <a class="flex flex-row justify-between align-center" [routerLink]="['/list']">
+          <a
+            class="flex flex-row justify-between align-center"
+            [routerLink]="['/list']"
+          >
             <mat-icon class="back-icon">arrow_back_ios</mat-icon>
             <p>Go Back</p>
           </a>
         </div>
-        <img class="rounded-lg" mat-card-xl-image src="{{ album.coverArt }}" alt="Album Cover Art" />
+        <img
+          class="rounded-lg"
+          mat-card-xl-image
+          src="{{ album.coverArt }}"
+          alt="Album Cover Art"
+        />
       </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
       <p class="text-justify mb-4">{{ album.description }}</p>
       <div class="flex justify-between align-center mb-4">
         <div class="flex align-center">
-          <app-favourite-icon class="mr-2" [isFavourite]="album" [artist]="artist"></app-favourite-icon>
+          <app-favourite-icon
+            class="mr-2"
+            [isFavourite]="album"
+            [artist]="artist"
+          ></app-favourite-icon>
           <p class="favourites-p">Add to Favourites</p>
         </div>
         <div class="text-end">
-          <span class="length whitespace-nowrap rounded-md p-1 mr-1">{{ album.songs.length }} songs</span>
+          <span class="length whitespace-nowrap rounded-md p-1 mr-1"
+            >{{ album.songs.length }} songs</span
+          >
           <span> {{ duration.minutes }}m {{ duration.seconds }}s </span>
         </div>
       </div>
       <mat-list class="mt-4" *ngFor="let song of album.songs">
-        <app-song-list-item [artist]="artist" [song]="song" (sendId)="removeSong($event, album.id)"></app-song-list-item>
+        <app-song-list-item
+          [artist]="artist"
+          [album]="album"
+          [song]="song"
+          (sendId)="removeSong($event, album.id)"
+        ></app-song-list-item>
         <mat-divider></mat-divider>
       </mat-list>
       <mat-expansion-panel>
@@ -35,20 +60,39 @@
             <mat-icon class="back-icon">add_box</mat-icon>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <form [formGroup]="addSongForm" (ngSubmit)="addSong(album.id)" class="flex justify-between items-center">
+        <form
+          [formGroup]="addSongForm"
+          (ngSubmit)="addSong(album.id)"
+          class="flex justify-between items-center"
+        >
           <div class="flex justify-between items-center w-full">
             <mat-form-field>
-              <input matInput placeholder="Title" formControlName="title">
+              <input matInput placeholder="Title" formControlName="title" />
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="time" placeholder="Length" formControlName="length">
+              <input
+                matInput
+                type="time"
+                placeholder="Length"
+                formControlName="length"
+              />
             </mat-form-field>
-            <button mat-raised-button [disabled]="!addSongForm.valid" color="primary" type="submit">Add</button>
+            <button
+              mat-raised-button
+              [disabled]="!addSongForm.valid"
+              color="primary"
+              type="submit"
+            >
+              Add
+            </button>
           </div>
         </form>
       </mat-expansion-panel>
       <div class="flex flex-row justify-between align-center mt-6">
-        <a class="flex flex-row justify-between align-center cursor-pointer" [routerLink]="['/list']">
+        <a
+          class="flex flex-row justify-between align-center cursor-pointer"
+          [routerLink]="['/list']"
+        >
           <mat-icon class="back-icon">arrow_back_ios</mat-icon>
           <p>Go Back</p>
         </a>
@@ -57,5 +101,8 @@
   </mat-card>
 </section>
 <ng-template #searchingTemplate>
-  <mat-progress-spinner class="fixed" mode="indeterminate"></mat-progress-spinner>
+  <mat-progress-spinner
+    class="fixed"
+    mode="indeterminate"
+  ></mat-progress-spinner>
 </ng-template>
