@@ -13,11 +13,17 @@
     </mat-expansion-panel-header>
     <form [formGroup]="addAlbumForm" (ngSubmit)="addAlbum()">
       <mat-form-field>
-        <input matInput placeholder="Title" formControlName="title" />
+        <input
+          matInput
+          maxlength="50"
+          placeholder="Title"
+          formControlName="title"
+        />
       </mat-form-field>
       <mat-form-field>
         <input
           matInput
+          maxlength="200"
           placeholder="Description"
           formControlName="description"
         />
@@ -42,6 +48,7 @@
             <mat-form-field class="mr-4">
               <input
                 matInput
+                maxlength="50"
                 placeholder="SongTitle"
                 formControlName="songTitle"
               />
