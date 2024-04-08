@@ -13,7 +13,8 @@ export class ArtistsService {
   /** Private Properties */
 
   // JSON Server API url from the environment variable
-  private readonly _apiUrl = environment.apiUrl || 'http://localhost:3000/artists';
+  private readonly _apiUrl =
+    environment.apiUrl || 'http://localhost:3000/artists';
 
   // Backup artists array fetched directly from JSON file
   private readonly _jsonArtists: Array<Artist> = artistsFromJson.artists;
@@ -25,13 +26,14 @@ export class ArtistsService {
   /** constructor */
   constructor(private _http: HttpClient) {}
 
-  /** Public Methods */
-
   // to get artists from JSON Server, in case of error, use backup directly retrieved from file (needed for Vercel deployment)
   getArtists(): Observable<Array<Artist>> {
     return this._http.get<Array<Artist>>(this._apiUrl).pipe(
       catchError((error) => {
-        console.log('Error fetching artists, fetching directly from JSON file:', error);
+        console.log(
+          'Error fetching artists, fetching directly from JSON file:',
+          error
+        );
         return of(this._jsonArtists);
       })
     );
@@ -55,5 +57,17 @@ export class ArtistsService {
   // set the data of the clicked card to the currently selected artist
   setSelectedArtistData(artist: Artist) {
     this._selectedArtistSource.next(artist);
+  }
+
+  addAlbum(newAlbum: Artist): Observable<Array<Artist>> {
+    return this._http.post<Array<Artist>>(this._apiUrl, newAlbum).pipe(
+      catchError((error) => {
+        console.log(
+          'Error fetching artists, fetching directly from JSON file:',
+          error
+        );
+        return of(this._jsonArtists);
+      })
+    );
   }
 }
