@@ -18,13 +18,11 @@ export class AlbumCardComponent {
   constructor(
     private _artistsService: ArtistsService,
     private store: Store<AppState>
-    ) {
-
-    }
+  ) {}
 
   // on click send the artist data to the service to set the selected artist
-  selectArtistData(artist: any, album:Album) {
-    this.store.dispatch(selectAlbum({album}));
+  selectArtistData(artist: any, album: Album) {
+    this.store.dispatch(selectAlbum({ album }));
 
     this._artistsService.setSelectedArtistData(artist);
   }

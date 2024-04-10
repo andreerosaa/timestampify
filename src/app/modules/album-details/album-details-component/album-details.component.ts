@@ -36,7 +36,6 @@ export class AlbumDetailsComponent {
   constructor(
     private store: Store<AppState>,
     private _artistsService: ArtistsService,
-    private _route: ActivatedRoute,
     private _router: Router,
     private addSongFormBuilder: FormBuilder
   ) {
@@ -58,8 +57,6 @@ export class AlbumDetailsComponent {
         this._router.navigate(['not-found']);
       }
     });
-    // // Get the albumId from the route parameters
-    // this.albumId = this._route.snapshot.paramMap.get('albumId') || '';
 
     // Fetch the artist data from the selected on click
     this._artistsService.selectedArtist.subscribe((selectedArtistInput) => {
@@ -67,35 +64,14 @@ export class AlbumDetailsComponent {
       this.artist = selectedArtistInput;
     });
 
-    //   // In case the artist data is not found, fetch from local storage
-    //   if (!this.artist) {
-    //     let localStorageArtist = localStorage.getItem('artist');
-    //     if (localStorageArtist) {
-    //       this.artist = JSON.parse(localStorageArtist);
-    //     }
+    // // In case the artist data is not found, fetch from local storage
+    // if (!this.artist) {
+    //   let localStorageArtist = localStorage.getItem('artist');
+    //   if (localStorageArtist) {
+    //     this.artist = JSON.parse(localStorageArtist);
     //   }
+    // }
     // });
-
-    // this.artist?.albums.forEach((album) => {
-    //   if (album.id === this.albumId) {
-    //     this.getDuration(album);
-    //     this.album = album;
-    //     this.isSearching = false;
-
-    //     // Store successfully found artists data on local storage
-    //     localStorage.setItem('artist', JSON.stringify(this.artist));
-    //     return true;
-    //   } else {
-    //     this.isSearching = false;
-    //     return;
-    //   }
-    // });
-
-    // this.album$.subscribe(album => {
-    //   if(album)
-    //   this.album = album;
-    //   this.isSearching = false
-    // })
   }
 
   getDuration(album: Album): Duration {
